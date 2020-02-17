@@ -1,0 +1,1166 @@
+# Your Code Basics {-}
+
+That was all you need to know about the layout and working with RStudio in general, for now. This section is going to be mostly about the fundamentals of the R language. Things like data types and structures, functions and libraries, data formats, loops and more, are all the horrible things that you need to have some understanding of right now. I wish I could skip this shit and go straight to good stuff, but I can not really. These things will come again and again and you will just fuck yourself up if you dont at least look at them now. I will try to be as interesting as possible and will use a lot of adult language, if you know what I mean, to keep you engaged.
+
+Now, remember, you are still sitting in your cubicle at work familiarizing yourself with R. Your boss is out for a while and he gave you a few days to settle down and get more comfortable with the setup and with R in particular. Nobody else has really bothered you up until now, but you suspect that it might change soon. You dont want to look like an incompetent degenerate, so you jump back into learning R.
+
+## Data Types & Structures 
+
+We have already written a few lines of code. Lets just erase all that trash and start over. 
+
+::: {.infobox .note data-latex="{note}"}
+Erasing and starting over, every time you get a little bit better, is very useful in the beginning. At least it was for me. Rewriting same stuff over and over with some minor improvements really cements the fundamentals in your head. 
+:::
+
+So, start a new script and write the following lines of code:
+
+```{r eval =FALSE, out.width='80%', fig.asp=.75, fig.align='center'}
+president <- 'Trump'
+
+age <- 70
+
+goodPresident <- TRUE 
+# Or you can write false here, it is up to you
+```
+
+There are four simple data types in R. Characters, numbers, booleans (logical), and stupid factors. Nerds will tell you that there are more types. There are, they are called 'complex', 'integers' and some other nonsence. Leave these types to them, you do not need them right now. Lets go in order.
+
+::: {.infobox .important data-latex="{important}"}
+
+In this book, I tried to illustrate the code the way it looks in real life coding. However, sometimes, a line of code can be too long and would not fit on a single line of a book (even digital), resulting in a scroll view, which is not a good reading experience. Therefore, from time to time, you will see me breaking a single code line in two or three lines. Do not worry, it will will work just the same in Rstudio. It might just look weird at first.
+
+Example:
+
+Something that looks like this:
+```{r eval =FALSE, out.width='80%', fig.asp=.75, fig.align='center'}
+president <- 'Trump'
+```
+Will sometimes look like this:
+```{r eval =FALSE, out.width='80%', fig.asp=.75, fig.align='center'}
+president <- 
+  'Trump'
+```
+
+:::
+
+
+### Characters
+
+Character type is just that – characters, letters, text, sentences, names and so forth. There is not much to it. Any text that you want to print or store in a variable or in a table will be a character. Numbers can be characters, dates can be characters, factors and logicals can be converted to characters. A simple example of a character will be the line of code that we have already typed:
+
+```{r eval =FALSE, out.width='80%', fig.asp=.75, fig.align='center'}
+president <- 'Trump'
+```
+
+What happening here is a character string ‘Trump’ is stored inside of the variable ‘president’. What is a character string? It is just a bunch of characters put together. So, character string ‘Trump’ is a combination of characters ‘T’,’r’,’u’,’m’,’p’. What can we do with characters? Lots of things, actually. Characters are obviously used to store names, descriptions, text, and other things of that nature, nothing special here. Some interesting things that we can do with characters are counting them, chopping them up and combining different strings together, we can filter by characters or by a number of characters in a string, we can group by characters and so on. I know that you probably are not following anymore, because it is hard to imagine those operations, if you have never done them, so I will shut up here. Lets just look at some of those. In the following chunk, we will paste two strings together and print the result.
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+# Storing 'Donald' inside of the variable 'presidentFirst'
+presidentFirst <- 'Donald'
+
+# Storing 'Trump' inside of the variable 'presidentLast'
+presidentLast <- 'Trump'
+
+#Now, lets put them together and store them in the third variable
+presidentFull <- paste(presidentFirst,presidentLast)
+
+#Print the result
+print(presidentFull)
+```
+
+Nice, we have just created two character strings, stored them into two separate variables, and pasted them together into the variale as one string. Simple and cool. We did not necessarily need to store the strings in the variables. You can also do it like this:
+
+```{r nice-fig3, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
+presidentFull <- paste('Donald','Trump')
+
+print(presidentFull)
+
+# Or even shorter, like this:
+print(paste('Donald','Trump'))
+```
+
+As you can see, the results of all three methods are the same. Here, we used the function paste(). It is a very usefull function, and we will be using it a lot. Have you noticed that when we pasted those strings together, there was a space automatically added. We pasted 'Donald' and 'Trump' together and got 'Donald Trump', right? If you are not a programmer, this is something you would expect. Because, why the hell not? In programming, you have to be precise, because a computer does not know what the fuck is goin on. It just interprets your commands. This time, it just so happened, that this particular function paste() automatically adds a space between the things that you are trying to put together. But what if you did not want that space there? For that, there is a second variation of the paste() function called paste0(). Lets see how it works.
+
+```{r nice-fig4, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
+# Check it out. This prints them together without a space.
+presidentFull <- paste0('Donald','Trump')
+
+# Printing.
+print(presidentFull)
+```
+
+Very nice. 
+
+::: {.infobox .tip data-latex="{tip}"}
+You probably do not see it at the moment, but the paste0() function is much much cooler and we will be using it instead of just 'paste'. Why? Because it gives you more control. The paste0() can add a space with no extra code, but paste() can not take a space out without extra code. This basically means, fuck paste().
+:::
+
+Now, look at how you can add that space using paste0().
+
+```{r nice-fig5, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
+# Here, we are basically pasting a third string 
+# (which is an empty space) in between 'Donald' and 'Trump'
+presidentFull <- paste0('Donald',' ','Trump')
+
+# Printing
+print(presidentFull)
+```
+
+Pasting things together is very useful and simple thing. I want to show you a couple more things that we can do with characters. Chopping character strings up will be something we will be doing a lot. Here is how it works. Lets say we have 'Donald' and 'Trump', but we want to convert it into 'Dump'.
+
+```{r nice-fig6, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
+# First, lets store the names
+
+first <- 'Donald'
+
+last <- 'Trump'
+
+```
+
+To get 'Dump' out of 'Donald' and 'Trump', we are going to need to get the first letter of the first name and the last three letters of the last name. We will be using function substr() for this.
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+D <- substr(first,1,1)
+
+print(D)
+```
+
+Function substr() takes a character string, a character's position to start chopping, and a finish position. So, we basically said: take 'Donald', start with 'D' and finish at 'D' and store that in the variable 'D'. Lets do it again, but without storing and variables, and in one line:
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+print(substr('Donald',1,1))
+```
+
+Good, now we need the 'ump' part. Same thing, but different numbers.
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+ump <- substr(last,3,5)
+
+print(ump)
+```
+
+Now, we need to paste these together and we already know how to do it.
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+Dump <- paste0(D,ump)
+
+print(Dump)
+```
+
+::: {.infobox .tip data-latex="{tip}"}
+Substr() will be a big part of your day to day programming. It is a very simple but very important function. It can be a liitle confusing at the beginning. Are these positions inclusive or exclusive? They are inclusive, but you are likely to forget that. Do not worry, it will become automatic for you after a while.
+:::
+
+As you might have noticed, every time I execute a function, I print the result. I am only doing it for you, and you do not really have to do it. In real life, I do not print the results of every single operation, because I pretty much sure what is in it. Hovever, it is still a good practice to print your results to make sure that it is intended. Lets move on.
+
+One last function I want to show you that you will be using a lot is trimws(). This function eliminates white spaces around a character string that you are passing to it. As you should remember from our paste() exercise, R can treat an empty space as a separate character. So, imagine that you are dealing with some handtyped data. Instead of typing 'Donald', someone typed 'Donald ' or ' Donald'. These empty spaces will make those two entries almost unusable because they just will not match the proper 'Donald' entry. That is where we will absolutely need functions like trimws(). Lets simulate a situation like that to see how it works:
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+# Normal
+first1 <- 'Donald'
+
+# With space after.
+first2 <- 'Donald '
+```
+
+Now, lets check if they are the same shit. For that we need a logical equality operator '=='. It works just like a regular equal '=' sign but it returns true or false. This is how we can compare characters and other non-numbers. Do not worry about it now, we will talk about it in depth later. So, lets see if 'Donald' equals 'Donald ':
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+first1 == first2
+```
+
+As you can see, they are not. Lets fix it.
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+# Eliminating white spaces.
+first2 <- trimws(first2)
+
+# Printing
+print(first2)
+```
+
+Lets check again:
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+first1 == first2
+```
+
+Now they are, because we trimmed that empty space. Perfect.
+
+That would be it for characters. I showed you a few things that we can do with them. Obviously, there are many more functions and many more things we can do with characters. The main point of this introduction is to get you to see the distinction between different data types. As we move along, you will see these functions more often and many more other function as well.
+
+### Numbers
+
+In R, numbers are called numerics. There are also integers and complex numbers, but do not even worry about these right now as we will not be working with them. For us, right now, numbers are numbers, and that is it. 15.5 is a number, 5 is a number, 0 is a number. Everything you can do with numbers anywhere else, you can also do here. Lets take a look at some basic operations. One distinction to get out of the way. Check this out:
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+#This is a number and the function class() lets us check that:
+class(70)
+
+#This is a character:
+class('70')
+```
+
+::: {.infobox .tip data-latex="{tip}"}
+So, adding parentesis around a number will make it a character. Remember!
+:::
+
+Now, back to the operatons:
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+# Storing age in 'age'.
+age <- 70
+
+# Storing term length in 'presidencyTerm'.
+presidencyTerm <- 4
+```
+
+Adding the two variables to get Trump's age by the end of the first term.
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+# Adding and storing.
+finalAge <- age + presidencyTerm
+
+# Printing.
+print(finalAge)
+```
+
+Or simply:
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+finalAge <- 70 + 4
+
+print(finalAge)
+```
+
+Lets print his year of birth:
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+print(2019 - age)
+```
+
+I think you got the idea. I hope that I do not have to teach you basic math or statistics. You can definitely do more with numbers in R, but the main point of this part is to show you that numbers in R are the same as the numbers anywhere else.
+
+### Booleans or Logicals
+
+You probably have not even noticed, but we have already used this type when checking if 'Donald' was equal to 'Donald' with space in the end. Booleans are also called 'Logicals'. They are quite simple, because there are only two of them. 'True' and 'False'. Also, you should know that, both, True and False have corresponding numbers 1 and 0 that basically mean the same thing. Do not worry about the numbers part. I will still show you how that works. Lets do it:
+
+First, lets see if TRUE and 1 and FALSE and 0 are the same things.
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+1 == TRUE
+
+0 == FALSE
+```
+
+As you can see, both returned as TRUE, which means they are equal to each other. Now, lets prove that not every number is equal to TRUE and that I am not just bullshitting you:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+25 == TRUE
+
+32 == FALSE
+```
+
+See? We are not going to be using 0 and 1 as true or false really, but you should be aware that there is such a thing.
+
+Lets see how we WILL be using boolians:
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+'Trump' == 'Trump'
+
+'Trump' == 'Obama'
+
+7 == 7
+```
+
+Now, to the big one:
+
+I am going to show you an {if else} concept here. I will briefly explain what it does, but you dont have to remember it right now. We will get into 'if else' later.
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+#0
+president <- 'Trump' 
+#1
+if (president == 'Trump'){ 
+#2  
+  print(paste(president, 'is the president')) 
+#3  
+  print(president == 'Trump') 
+#4  
+} else { 
+#5  
+  print(paste(president, 'is not the president')) 
+}
+```
+
+What the fuck just happend here? #0: we stored 'Trump' in the president variable. #1: in the {if else statement} we basically asked: 'does variable president equal 'Trump'?' and if it does, run the #2 and #3. #2: paste together the contents of the variable president and the character string 'is the president' and print it. #3 Print a logical expression comparing the contents of the variable president to 'Trump', it only has 2 options as you remember. In the #4 we are basically saying whay should happen if #1 is FALSE. So, if the president variable does not equal 'Trump', the #5 should happen. And the #5 here is pretty much the same as #2. The main point of the {if else} statements is that only one of these two options can be TRUE and therefore, only one gets executed, in this case it is the #2 and #3.
+
+Now, lets change the president variable to good old Obama, and see if he is still president.
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+president <- 'Obama'
+
+if (president == 'Trump'){
+  print(paste(president, 'is the president'))
+} else {
+  print(paste(president, 'is not the president'))
+}
+```
+
+If all of that sounded like a lot of nonsense to you, do not worry about it. The 'if else' example is too much for now anyway. Just remember that Booleans (Logicals) consist of only two values, TRUE and FALSE. They exist so we could compare not only numbers but characters and other data types as well.
+
+### Factors
+
+::: {.infobox .warning data-latex="{warning}"}
+As I mentiond before, factors are stupid and we are going to try to avoid them as much as possible. If you want to learn about factors, you are not going to do it here. I am going to give you a basic explanations and some examples but that is it. I will also explain why I think they are stupid.
+:::
+
+Think of factors as categories or levels. The genders would be factors, the colors would be factors as well. Lets look at some fucking examples.
+
+We have not yet reached 'vectors' and other data structures, but I need to use a vector here to show you factors. So do not worry if you can not follow 100%.
+
+Lets store some colors in a vector of character strings
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+# c() is how you specify a vector.
+colors <- c('red','blue','green','red','blue',
+              'green','red','blue','green')
+```
+
+This string is not a factor yet, but it is a good candidate to be one. There is a limited number of colors and colors can be treated as categories. Just like Male and Female, if we picked genders instead of colors.
+
+Lets first check what is colors.
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+# Checking the class.
+class(colors)
+```
+
+As you can see, it says 'character', more like a group of characters, but it will say character. Fine.
+
+Lets convert it to a factor. I will use the function 'factor()', but do not try to remember it, we will never use it. Never!
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+# Converting to factor and storing.
+fColors <- factor(colors)
+
+# Lets check again.
+class(fColors)
+```
+
+As you can see, it is a factor now. Finally, I want to print them side by side to show the difference:
+
+```{r out.width='100%', fig.asp=.75, fig.align='center'}
+# Printing the vector 'colors'
+print(colors)
+# Printing the factor 'fColors'
+print(fColors)
+```
+
+Factors group its categories into levels, characters do not.
+
+::: {.infobox .warning data-latex="{warning}"}
+Factors are usefull for some advanced statistical operations. Once you reach that level, by all means, go ahead and start using them. Right now, factors will only be in the way. They will mess up you code many many times. I am pretty sure, you will be hating them just like I do. Whatever factors are accomplishing with their levels can be accomplished by grouping regular characters without the worries of a messed up code. Again, we will be avoiding factors as much as possible, but at least you are aware of them. 
+:::
+
+
+### Dates & Times
+
+This one is a big topic by itself, and we will spend some good time diving deeper into it later in this book. Dates are important. One of the best things about R is how well it handles dates and how much flexibility it offers when dealing with them. That flexibility, though, does not come without cost. The cost is complexity. You will be dealing with dates and times a lot, and it will become a big source of frustration for you. However, once you master R and start looking into some other languages, you will appreciate how many options and how much flexibility R gives you. There are so many packages that deal with dates that if I start going over all of them, you will close this book. Therefore, I will show you just the one that I found to be the most universal. It is called 'lubridate'. Let me show you a few examples of dates and what we can do with them. First thing we need to do is to install the package - install.packages('lubridate').
+
+```{r eval=F, out.width='80%', fig.asp=.75, fig.align='center'}
+install.packages('lubridate')
+```
+
+Now, load it.
+
+```{r include = F, out.width='80%', fig.asp=.75, fig.align='center'}
+library(lubridate)
+```
+
+You are doing great! Just messing with you, you have not really done shit yet!
+
+Lets first create a date:
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+date <- '2019-01-01'
+```
+
+We just stored a character string that looks like date inside of the date variable. Lets double check:
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+class(date)
+```
+
+Just a character right now. Lets convert using the function ymd() from the package 'lubridate':
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+# Converting and storing.
+date1 <- ymd(date) 
+```
+
+Ymd here stands for year month and day. lubridate has other variations as well.
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+class(date1)
+```
+
+You would ask, 'How is it different from having a date as a character?' Sometimes it is not, but, at some point, you will want to do some math with your dates. For example, adding a day to a date. It is impossible to do with a character, unless you want to manually retype shit every time.
+
+Lets see how it works with dates:
+
+```{r out.width='80%', fig.asp=.75, fig.align='center'}
+# Adding a day to our date.
+newDate <- date1 + 1
+# Printing.
+print(newDate)
+```
+
+This was just a short introduction to the topic of dates. I only showed you one function of one package. Dates are perfect for working with charts and graphs, projections and other calculations involving time. We are going to dive deeper into dates later in this book, but not untill we really need that knowledge.
+
+### Type Conversions
+
+You are going to encounter many instances when you will be trying to match one dataset with another and it just will not match. You would look at your data, and it would seem fine and clean. You would check the column names, and they are going to be good for matching. So, what is going on here? In many cases, it is just your data types are different. For example, a column where you have dates got converted to a charater type, or some column where you had colors stored as character got converted to a factor type. It is super annoying and it happens more often than you think. You need to be able to deal with that shit. Besides fixing types when they are causing you problems, there are going to be even more cases when you are going to want to convert types for you analysis or something, so, do not worry, it is not all bad. Lets see how it works:
+
+::: {.infobox .caution data-latex="{caution}"}
+Luckily, conversions are quite simple and very uniform across different types, meaning that the functions are kind of similar. 
+
+1. Number to Character.
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Storing.
+number <- 60
+# Checking class.
+class(number)
+# Converting
+character <- as.character(number)
+# Checking class.
+class(character)
+```
+
+2. Character back to Number.
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Storing.
+number <- as.numeric(character)
+# Checking class.
+class(number)
+```
+
+3. Stupid Factor to Character and Numbers (will be doing this a lot).
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Storing.
+factor <- factor(5)
+# Checking class.
+class(factor)
+# Converting.
+character <- as.character(factor)
+# Checking class.
+class(character)
+```
+
+I want you to pay attention here:
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Converting factor to numeric.
+number <- as.numeric(factor) 
+# Printing.
+print(number) 
+```
+
+The number that we sored in the factor was 5, so why is it printing 1 now? Because it is a fucking factor. It will mess you up! Fine, I will tell you why. Instead of printing the number that we stored, It printed the level associated with that number. The only thing that you need to remember, besides not using factors is the following:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Converting factor to character first and then to number.
+number <- as.numeric(as.character(factor))
+# Printing
+print(number)
+# Checking class.
+class(number)
+```
+
+If you are converting a number that is a factor back into a number, you must first convert it into a character!
+
+4. Dates to Characters and Back
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# This function gives us today's date (handy)
+date <- Sys.Date() 
+# Printing
+print(date)
+# Checking class.
+class(date)
+# Converting to character.
+characterDate <- as.character(date)
+# Printing.
+print(characterDate)
+# Checking class.
+class(characterDate)
+```
+
+I want to show you two ways to convert it back to a date. The first one is the one that we used before - ymd() form the 'lubridate' package. It is the most intuitive so I will insist on using it. The second is from the base R, meaning that you do not need any external packages to use it.
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Converting.
+dateFirst <- ymd(characterDate)
+# Printing.
+print(dateFirst)
+# Checking class.
+class(dateFirst)
+# Converting using base R.
+dateSecond <- as.Date(characterDate)
+# Printing.
+print(dateSecond)
+# Checking class.
+class(dateSecond)
+```
+
+As you can see, they do the same shit. However, as we progress, we will be doing more sophisticated date and time operations, and you will see why I am insisting on lubridate.
+
+These were some basic conversions. But even this basic, it will cover the 95% of what you will ever need when dealing with data type conversions. The only part that we will need to spend more time on in the next chapters is the dates and times part. Other than that, you data type conversion foundation is built.
+:::
+
+This, sort of, concludes the intruduction to the basic data types that I want to cover. So far, you got to play with characters, numbers, booleans, stupid factors, and dates. These are the building blocks for the next part. In the next introductory part, we are going to look at the more complex data structures like vectors, lists, and data tables. You have already seen some of them, so it will not be anything special or complicated, but still, something that we just cant skip. Lets do this.
+
+### Vectors
+
+If you are new to programming, vectors will be hard to wrap your head around right away. They are quite simple, though. However, because you are not used to working with data in that format, it will take some time to get used to. At least it was for me. I dont know, maybe, I am so good of a teacher that you will get it right away. We will see. 
+
+::: {.infobox .note data-latex="{note}"}
+Anyway, we have already seen a few vectors so far. Now, I think, the easiest way to understand vectors right away is like this: 
+
+- step 1: magine a table with some data; 
+- step 2: each column in that table is a vector; 
+- step 3: that is it!  
+:::
+
+If you ever worked with excel tables, you should be able to picture one. Every column with data in that table is a separate vector, where headers are just names for those vectors. It does not matter what type of data are in those columns. If it just numbers, it is a numeric vector; if it is charactes, a character vector; it can even be mixed. Lets quickly take a look. 
+
+Lets create three vectors. To create a vectore you need to use the following syntax: c(...).
+
+1. With characters:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Storing a vector.
+charVector <- c('blue', 'yellow', 'green','red')
+# Printing.
+print(charVector)
+```
+
+2. With Numbers: 
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Storing a vector.
+numVector <- c(1,2,3,4)
+# Printing.
+print(numVector)
+```
+
+3. Mixed:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Storing a vector.
+mixVector <- c(1,'dog',55,'tree')
+# Printing.
+print(mixVector)
+```
+
+That is it. You are basically just storing you data in bigger data structure. If you want, you can also apply functions to them. As an example, lets convert the numeric vector to a character vector.
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Converting.
+numCharVector <- as.character(numVector)
+# Printing.
+print(numCharVector)
+# Checking class.
+class(numCharVector)
+```
+
+Whatever we did to a single number before, we are doing to every number in that vector.
+
+Now, do you remember that comparison to the comlumns of a data table that I brought up? Let me show you. Lets create a table out these vectors:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Creating a table.
+table <- data.frame(charVector,numVector,mixVector,numCharVector)
+# Printing.
+print(table)
+```
+
+We were able to create this table because the number of records in all these vectors is the same (4). Dont worry about it now, we will cover data tables soon. Another note though, data tables and data frames in R are used interchangably. 
+
+This is about all you need to know about vectors at the moment. I dont know about you, but for me, it took quite some time to get them. Anyway, we will not be doing anything crazy with vectors anytime soon. I showed you that we can apply functions to them, but we will not be doing that either. We kind of will, but it will be in the context of applying them to columns of a dataframe and not just separate vectors. I think, this is enough for now.
+
+### Lists
+
+Lists are similar to vectors in that they also store data inside. They are more complicated and are harder to understand right away. Lists store data hierarhically and apart from storing things like characters and numbers, they can also store vectors, data tables, as well as even other lists. They become very usefull when you start working with loops. To give you an example, if you had fifty data tables and you wanted to do the same operation to all of them (something like converting all headers to upper case), instead of doing that shit fifty times, you would store all these data tables in a list, loop over it and apply that operation just once but to all elements of the list. It is an intermediate technic, so I do not expect you to follow too much right now. Let me show you a few examples instead, so you could see how lists are different:
+
+Now, do me a favor and create the same four vectors that we did in the previous section. Also, create a table with those four vectores, just like we did. Name it 'table'. Will be a good practice for you.
+
+Now that you have prepared everything, lets create some lists.
+
+Just with simple data types:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Creating a list.
+list1 <- list('a', 1, 'b',55,'100')
+# Checking class.
+class(list1)
+# Printing
+print(list1)
+```
+
+The following structure is a bit more complex compared to the ones we looked at so far. Double square brackets there indicate the number of the item in the list. It lets us access that element for example for looping. On top of that, you can go even deeper and access the variables inside of the list's item. To access 'a' we need to do the following:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Printing.
+print(list1[[1]][1]) 
+```
+
+Double beackets access the fist element of the list and the single brackets give us the first element inside, which is 'a'. 
+
+It will only get more complex from now, so I will stop printing the results to save space. You should still poke around and see what the following lists are all about:
+
+List of vectors:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+list2 <- list(charVector,numVector,mixVector,numCharVector)
+```
+
+List of vectors + data tables:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+list3 <- list(charVector,numVector,mixVector,numCharVector, table)
+```
+
+List of tables:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+list4 <- list(table,table,table)
+```
+
+List of lists:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+list5 <- list(list1,list2,list3,list4)
+```
+
+As you can see, lists can get quite complex very quickly. They can be very useful when you are ready to use them. We are not ready and will not be using them any time soon. The only reason I showed them to you is for your overall understanding of the R data types. We will definitely come back to lists in time. For now, lets move on to the topic of data tables. That is the one we will be using right away and a lot.
+
+### Data Tables (Data Frames)
+
+Remember, a few topics ago, I told you to think of vectors as just columns inside data tables? Well, now, hear my (not only) definition of data frames (or data tables, as you might have noticed, we are using them interchangably). 
+
+::: {.infobox .note data-latex="{note}"}
+Data frame is a collection of vectors of the same lengths. That is it. Why same number of rows? Because, imagine a table, it is a rectangle, right? Even if some rows are empty, you, still, have the same number of them. 
+:::
+
+One of the best things about working with R, if not the best, is its handling of data tables. If you have ever worked with Excel of some other tabular data handler, then R's way of dealing with such data will be very intuitive for you as well. We will be working with tables a lot. We will use them for everything, even for things that we do not really need them for. For example, sometimes, it is much faster and efficient to do things with vectors, instead, we will be converting vectors into tables and then doing things to them. But why? Because tables are intuitive and vectores are confusing. I am trying to explain things to you the way I wish they were explained to me. If you are a genius who gets everything right away, then you do not need this book. Get out of here. For the rest of us, through working with tables, you will eventually get the rest of the data structures and will decide when and what to use on your own. Lets look at the tables that we have already created.
+
+We already have a data frame. Lets use it:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Storing 'table' in 'newTable'.
+newTable <- table
+# Printing.
+print(newTable)
+```
+
+When you use the function print(), it prints everything in the console (view 3). You can review your outputs like that, but it is not very practical. The better way is to use the Environment (view 2). Select the 'newTable' in your Environment. You should see the same table, but as a separate full screen tab. Point at the column names and hold your pointer there for a second, you should see the data type of that column. There is not much more that you can do with this view, but that is why it is great. It does not have a ton of options to confuse you. Close it.
+
+Lets do a couple of things to our new table.
+
+Removing first row and fourth column:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+newTable <- newTable[-1,-4]
+```
+
+It is confusing in the beginning, but this sintax: 'table[rows , columns]' is very standard and the most intuitive for dealing with tables. Within square brackets: the left side of the comma deals with rows and the right side with columns. So, if we wanted to eliminate the second row and the second column we would write: 'newTable[-2,-2]' and if we wanted to eliminate the first and the second rows and the first column, we would write: 'newTable[-c(1,2),-2]'. You get the idea.
+
+Now, lets rename the columns:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Renaming.
+colnames(newTable) <- c('col1','col2','col3')
+```
+
+If you just want to rename just one column:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Renaming.
+colnames(newTable)[2] <- 'Sherman'
+# Printing.
+print(newTable)
+```
+
+Lets also count the number of rows and columns:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Counting rows.
+nrow(newTable)
+# Counting cols.
+ncol(newTable)
+```
+
+These were some basics for data frames. It is all you need to know for now. If I start to show you more shit now, I will loose your attention, because you will stop following at some point. I am telling you, we are going to be working with data frames so much that it will be the first thing that you master. 
+
+Lets summarise what we have looked at, and hopefully learned, in this section. First, we looked at R's basic data types, which are characters, numbers, booleans, factors, as well as dates. We also applied a few functions to them and saw how we can convert one type to another. Then, we looked at the main data structures. These are vectors, lists, and data frames (also known as data tables). We created them, used one as a part of the other, and saw how we can modify them at will. You might have found some of that boring as fuck, but you need to know this stuff to proceed. In the next section, we are going to talk about functions (not the ones that you write for yourself, but the existing ones), libraries (packages), file formats, loops, and sql queries. 
+
+## Coding Tools
+
+We are done talking about the data types and structures. In this section, I would like to cover some groud talking about coding tools. I was not sure what to name this section so I picked coding tools. Things like functions, libraries, loops, file formats, and sql queries are not really data types or structures, nor are they coding, strictly speaking. Whatever, just fucking stick with coding tools. 
+
+### Functions
+
+We are going to split functions in two types: ones that you wrote, and ones that were written for you. Forget about writing your own functions for now. Here, we will be covering the second type. R has tons of functions. One of the best things about R is that it is open sourced. Anybody can write a function, package it, and release. Because of that, there are functions almost for anything. The flip side of that, is that there is a bunch of functions that do same shit. This makes it almost impossible to have one guiding rule for the language usage - there is no one right way to do things. It, also, creates a lot of competition between package creators, as each tries to be the shit who created the best tool for the job. 
+
+::: {.infobox .note data-latex="{note}"}
+I personally enjoy to know more than one way to skin a cat (This is a joke!!! I do not support animal cruelty!!! I am serious!!!), but you might be different. There are distinct schools of thought in R, though. It is not a complete chaos, so, do not worry. We will be following the two biggest ones.
+::: 
+
+Anyway, there are also two types of functions (out of those that are written for you): built-in and from outside. The built-in (also known as base) are the functions that come pre-installed with R. You can do a lot with just them. You can do all the math and stats operations, dates, basic plots, and more. That would be fucking stupid though. I am sure, there are purists who do that. Fuck them. R is powerful and amazing because of the wealth of third party functions that are available for free to everyone. There are functions for everything. I, obviously, can not show you all the functions, and there is no need to dive into them now. I will show you a few as an example:
+
+We have already installed and loaded the libraries that we will be using. But, in case you started a new sessions or something, lets load them again:
+
+```{r include = F, out.width='90%', fig.asp=.75, fig.align='center'}
+library(tidyr)
+library(dplyr)
+library(lubridate)
+```
+
+We have already applied a few functions here and there before. print(), substr(), trimws(), ymd(), as.Date, colnames(), and others are all functions.
+
+Lets use a few more. First, lets create a table with three columns. One with numbers, second with characters, and third with numeric dates.
+
+```{r out.width='100%', fig.asp=.75, fig.align='center'}
+# Creating a table.
+data <- data.frame(a <- letters[1:4],
+                      b <- seq(1.345,4.345),
+                      c <- seq(20190101, 20190104))
+# Printing.
+print(data)
+```
+
+We used four functions here: 
+
+```{r eval = F, out.width='90%', fig.asp=.75, fig.align='center'}
+# Creates tables (rarely used)
+data.frame() 
+# Converts sequence of numbers to letters (rarely used)
+letters[] 
+# Creates a sequence of numbers (often used)
+seq() 
+# Prints whatever (used all the time)
+print() 
+```
+
+Ok, two things right away. Column names are messed up, and I also want to show you how to access columns of data tables in R.
+
+Fixing column names:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Renaming.
+colnames(data) <- c('letters','numbers','dates') 
+```
+
+::: {.infobox .caution data-latex="{caution}"}
+To access a column of a dataframe, you will use the $ operator between the dataframe's name and the column's name. Like this:
+
+```{r eval = F, out.width='90%', fig.asp=.75, fig.align='center'}
+# Accessing the column 'letters'
+data$letters
+```
+::: 
+
+Working with numbers. Rounding all numbers in that column to two decimals:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Rounding.
+data$numbers <- round(data$numbers,2)
+```
+
+this is a good place to talk about arguments in functions. Arguments are the things that you pass to a function. There can be any number of arguments in a function, it depends on the person who wrote the function. For example, the function round() that we just used, accepts two arguments: 1. a number or a vector of numbers 2. the number of decimal points to round to. In this function, if you do not specify the second argument it defaults to 0. That is called a default argument. The first argument here is, of course, mandatory. Without it R will kick an error. Functions can have different number of arguments. Some are more important than others. Every time you are about to use a new function, google it first to see its main arguments to avoid unintended results.
+
+Lets go back to the examples.
+
+Creating another column and rounding all numbers down to the whole number using the function floor().
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Rounding down.
+data$roundDown <- floor(data$numbers)
+```
+
+Same, but rounded up. Using the function ceiling().
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Rounding up.
+data$roundUp <- ceiling(data$numbers)
+# Printing.
+print(data)
+```
+
+Here, we are using the function mean() to print the mean of the column 'numbers'. We are not storing the result anywhere. Instead, we printing it right away. 
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Printing mean.
+mean(data$numbers)
+```
+
+Using the function sum() to print the sum without storing. 
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Printing sum.
+sum(data$numbers)
+```
+
+Printing min/max without storing.
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Printing min.
+min(data$numbers)
+# Printing max.
+max(data$numbers)
+```
+
+Now, lets do something to the character column.
+
+Using the function toupper(), we are changing the column 'letters' to upper case.
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Upper case.
+data$letters <- toupper(data$letters)
+# Printing.
+print(data)
+```
+
+Switching back by using the function tolower().
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Lower case.
+data$letters <- tolower(data$letters)
+```
+
+Lets add the string ' test' to our letters by using the function paste0().
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Pasting
+data$letters <- paste0(data$letters,' test')
+# Printing.
+print(data)
+```
+
+Splitting one column into two with an empty space in the middle (little advanced).
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Piping data into the function separate() and stroting the result
+# inside of data.
+data <- data %>%
+  separate(letters, into = c("columnA", "columnB"), by = ' ')
+# Printing.
+print(data)
+```
+
+::: {.infobox .caution data-latex="{caution}"}
+This is a good time to introduce a '%>%' (pipe operator). A pipe overator will be very very important for us. We will be using it in this book a lot and we will continue using it all the way through the last book where we will be doing some very advanced asynchronous programming. This glues all that. Very very important. 
+::: 
+
+Now, here is what it means. Think of %>% (pipe) operator as the word 'THEN'. Lets look at the operation we excecuted above: 
+
+::: {.infobox .note data-latex="{note}"}
+- STEP 2) data <- 
+- STEP 1) data %>% separate(letters, into = c("columnA", "columnB"), by = ' ') 
+- STEP 3) print(data). 
+
+Step by step: 
+
+- 1. take data, then, separate the column 'letters' into the columns 'columnA' and 'columnB'  by emply space. 
+- 2. store the result in data. 
+- 3. print data. 
+
+:::
+
+Apart from the ordering being not from left to right, it is pretty fucking straighforward, I think. Now, on top of being somewhat easy to understand, this type of sintax is also very efficient. You can chain lots of operations like that. I know that you do not give a shit about efficiency at the moment, you are just trying to get this to work. Therefore, here is a very simple scheme: 
+
+::: {.infobox .caution data-latex="{caution}"}
+dataframe <- dataframe %>% function(column) %>% function(column) %>% ....
+::: 
+ 
+You can basically chain as many as you want. We will see that in action later.
+
+Finally, lets convert a numeric date column into an actual date:
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Converting.
+data$dates <- ymd(data$dates)
+# Printing.
+print(data)
+```
+
+I just showed you a fraction of what I usually use, and what we are going to be using in this book. Some of these functions were from the base R and some from the external packages like lubridate, tidyr, and diplyr. The concept is simple: you need to do something, you look up a function for that, you install and load the package, you use the function like this: 'result <- function(arguments)'. Next, we will look into packages.
+
+### Packages (Libraries)
+
+Packages or Libraries are just containers for functions. There are tons of libraries out there, and that is great. We pretty much covered this whole topic of how packages and functions are amazing and how they do all these different things. So, in this part, I am just going to give you a list of libraries that you are going to install and drag with you every time you launch a new project. You will see some people who will be like "Bro, it is wrong to have so many packages loaded all the time." Do not listen, they do not know what they are talking about. Dragging a bunch of packages, even if you will not use some of them, will save you a lot of time. So, here:
+
+::: {.infobox .caution data-latex="{caution}"}
+
+```{r message=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
+  library(lubridate) # for working with dates/times
+  library(data.table) # ecosystem for working with tables
+# and averall data manipulation
+  library(dplyr) # another ecosystem for working with tables
+# and averall data manipulation (will be our primary)
+  library(openxlsx) # to load data from excel
+  library(tidyr) # for data manipulation
+  library(fst) # for loading fst files 
+  library(stringi) # for manipulating character strings
+  library(zoo) # for working with dates/times
+  library(ggplot2) # for nice graphs
+  library(scales) # combines with ggplot2 for scaling
+  library(tibble) # for working with data and tables
+  library(RMySQL) # for sql queries using mysql database
+```
+
+::: 
+
+There are many more libraries that we are going to use. I will be introducing them gradually from now, rather than all at once. For now, just install all of these and start dragging them from script to script when you start a new project. You do not need to look into them now. 
+
+### Data Formats
+
+If you have ever seen a computer, then data formats should not be anything new to you. You do not have to be a programmer to know the term. There is a bunch of different formats out there. Formats like pdf, xlsx, txt, csv, doc, docx, and others are a day to day thing that you see anyway. Why do we care? You will be saving a lot of your analysis using some sort of files, right? Also, you need to get your data from somewhere, because you almost never generate your own. Here, I will show you the formats that we are going to be using the most.
+
+First, lets create a table. Same one we did before.
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Creating a table.
+data <- data.frame(a <- letters[1:4],
+                      b <- seq(1.345,4.345),
+                      c <- seq(20190101, 20190104))
+```
+
+### CSV
+
+In my experience, CSV is, by far, the most used format to store data in R. It is compact, fast, supported by excel and other similar editors, and well supported by R. The fact that it is accessible by an Excel kind of software is very important. A lot of times you will be doing some analysis for your superiors. They might not know R, but they will know Excel. You should be able to send them your data in the format that they can consume.
+
+This is how you save your table as a CSV: 
+
+::: {.infobox .tip data-latex="{tip}"}
+- 1.Get the path of where you want to store the file. If you do not know how - on windows go to that folder and on top you will see the path, copy it. 
+- 2.Use that path as the second argument to the function. Like this: fwrite(data, 'path'). 
+- 3.When you paste the path you will see that you have single forward slashed separating the folders. Like this : /a/b/c. You must change this to //a//b//c or \\a\\b\\c for it to work. 
+::: 
+
+Here is my example:
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Saving.
+fwrite(data, '//home//nkta//Desktop//book//bookData//data.csv')
+```
+
+Lets read it back.
+
+```{r out.width='100%', fig.asp=.75, fig.align='center'}
+# Reading.
+data1 <- fread('//home//nkta//Desktop//book//bookData//data.csv')
+# Printing.
+print(data1)
+```
+
+### XLSX (EXCEL) 
+
+Similar to csv but can have multiple tables. Basically, an excel spreadsheet. We will not be writing this format, but, sometimes, you have to work with this format and you need to know how to read it in.
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Saving.
+write.xlsx(data1,'//home//nkta//Desktop//book//bookData//data1.xlsx')
+# Reading.
+data2 <- read.xlsx('//home//nkta//Desktop//book//bookData//data1.xlsx')
+```
+
+### FST
+
+This one is extremely fast. I think it was developed by Facebook to store huge data fast. We will be using it down the line in the next books.
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Saving.
+write.fst(data2,'//home//nkta//Desktop//book//bookData//data2.fst')
+# Reading.
+data3 <- read.fst('//home//nkta//Desktop//book//bookData//data2.fst')
+```
+
+There are also other popular formats that we will not be working with. They are RDS, JSON, and XML. You can look them up yourself.
+
+As you can see, reading and writing these formats is easy. On top of that, all these functions are pretty much the same. CSV will be our number one, fst will be the distant second. You get the idea. All these file types are good for saving and sharing your data on small and local scale. You would use these to save some data for a future analysis, or to send to your boss, something like that. The way big boys work with data is through databases. In the next and final introductory section, I will show you how some of that is done.
+
+### SQL Queries
+
+SQL is extremely important. You will not go far without it. I will not teach you the language itself in this book, but I will show you the most used commands and how to execute them. Here, I want to show you how to connect to a database and retreve some data. I have set up a practice MySQL database, and, from now on, we will be interating with it a lot. Lets connect to it and retreve some data. Before we do though, I want to say a few things about databases. 
+
+::: {.infobox .note data-latex="{note}"}
+
+This is how I think about the types of databases out there.
+
+- There are old piece of shit databases that ,if you are unlucky, you will be forced to work with at work. That would happen if your organization has old infrastucture and is not planning to change it. There will be no difference in SQL language between fast and slow databases so it doesnt matter. You will not be wasting time learning it, you will just struggle a lot with speed. 
+- If you are lucky, your database will be extremely fast, so fast that you will start to think that all databases are that fast. Such databases are not the most popular, because they are usially designed for some specific tasks and speed. They DO look like regular databases at first, but at some point, you will encounter their limitations - something small, something that you will need to do but it just will not be able to do. They might also be not free to use. I will show you such databases in the future and even teach you to set them up. Not now, though. 
+
+::: 
+
+First, lets connect to our database. For this, we will use a function from the library 'DBI'. Even though, we never loaded this package, it got automatically added when we loaded RMySQL. This happens all the time. When you try to install a package, R checks if that package relies on some other packages to work. If it does, but they are not installed, R will automatically install them. 
+
+```{r include = F, out.width='90%', fig.asp=.75, fig.align='center'}
+# Connecting.
+connection = 
+# specifying database type.
+  dbConnect(drv = MySQL(),  
+# username
+    user = "fallenangel1", 
+# password
+    password = 'nvoevodin', 
+# address
+    host = 'mybookdatabase.cgac79lt7rx0.us-east-2.rds.amazonaws.com', 
+# port
+    port = 3306, 
+# name of the database
+    dbname = 'nikita99') 
+```
+
+```{r eval = F, out.width='90%', fig.asp=.75, fig.align='center'}
+# Connecting.
+connection = 
+# specifying database type.
+  dbConnect(drv = MySQL(),  
+# username
+    user = "xxx", 
+# password
+    password = 'xxx', 
+# address
+    host = 'mybookdatabase.cgac79lt7rx0.us-east-2.rds.amazonaws.com', 
+# port
+    port = 3306, 
+# name of the database
+    dbname = 'nikita99') 
+```
+
+Without the confusing comments and spaces, it looks like this: 
+
+```{r eval = F, out.width='90%', fig.asp=.75, fig.align='center'}
+
+connection = dbConnect(drv = MySQL(),
+                       user = "xxx",
+                       password = 'xxx', 
+                       host = 'mybookdatabase.cgac79lt7rx0.us-east-2.rds.amazonaws.com', 
+                       port = 3306, 
+                       dbname = 'nikita99') 
+
+```
+
+I am not going to explain each argument, because you do not need that at the moment. This setup will work for now. At work, this will be provided for you by a database administrator or something. We WILL be setting up our own databases in the future books, but it is too advanced right now.
+
+So, wnen you execute the connection, it gets strored in your environment. It kind of just sits there untill you disconnect. But now, you can use it to get the data from the database.
+
+First, lets look at the list of tables inside:
+
+```{r eval = F, out.width='90%', fig.asp=.75, fig.align='center'}
+# Listing tables.
+tables <- dbListTables(connection)
+  ```
+
+Now, lets take the table 'book_table' and check the first 5 rows in there.
+
+```{r eval = F, out.width='90%', fig.asp=.75, fig.align='center'}
+# Checking first five rows.
+data <- dbGetQuery(connection,"SELECT * FROM book_table limit 5")
+```
+
+I want to spend some time here and take a look at what we just did. The overall syntax should be more or less clear to you now: we are applyting some function on the right side of the arrow ( dbGetQuery(connection,"SELECT * FROM book_table limit 5") ) and storing the result inside of the variable on the left side (data). The function that we are using is 'dbGetQuery'. It has two arguments: the database connection, and the actual SQL command. The connection should be clear to you: we connected to the database with the credentials and stored that connection in the variable connection. That is it. Now, about the actual SQL command - "SELECT * FROM book_table limit 5". This is an actual SQL language. Basically, we just used another programming language inside of R. This is how SQL works: there are key commands, and there are inputs. In our case, key commands are SELECT, FROM, LIMIT. The inputs are: *, book_table, 5.
+
+Lets go line by line:
+
+::: {.infobox .note data-latex="{note}"}
+
+- 'SELECT' - every sql query will start with SELECT
+- '*' - means all or everything
+- 'FROM' - will also be there every time 
+- 'book_table' - specifying the table
+- 'LIMIT' - lets us set the number of rows to pull
+- '5' - the number for the limit
+
+::: 
+
+The key commands let us filter the database to only extract what we need. the usual pattern is like this: SELECT something FROM datatable WHERE something GROUP BY something.
+
+If you got that, perfect. If not, does not matter. It took me a while to even be able to execute a query. I am not event talking about understanding commands. For now, we will only be using SQL to pull the entire tables from it, without filtering anything. Later, we will gradually start adding key commands to our querues. Lets pull the whole table:
+
+```{r eval = F, out.width='90%', fig.asp=.75, fig.align='center'}
+# Pulling everything.
+data <- dbGetQuery(connection,"SELECT * FROM book_table")
+```
+
+If we can just pull the entire table like that, why did I show you the limit thing, and why do we need SQL filtering and all that extra shit? Even with 100,000 rows, the table that we just pulled is considered tiny by the world of big data standards. This table took a second to pull and abour 20mb of your RAM. Imagine you are working with a table that stores daily porn searches. It probably has billions of rows added every day. Pulling big tables like that will crash your computer every time in minutes. To avoid that, you must be able to pre-aggregate your pulls using SQL. There you go. We are not doing any porn aggregation yet so we are going to be ok with pulling the entire thing.
+
+Let me show you a few more pulls just for fun.
+
+Pulling just vin, year, and record date. I will be surrounding the name of the columns in ticks. Ticks are used when columns have spases. Something like 'vehicle_year' would be ok without ticks. Generally, avoid using spaces when naming things in programming.
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Pulling.
+data <- dbGetQuery(connection,"SELECT 
+                   `vehicle vin number`,
+                   `vehicle year`,
+                   `last date updated` 
+                   FROM book_table")
+```
+
+::: {.infobox .important data-latex="{important}"}
+
+Remember! There is no comma before FROM!
+
+::: 
+
+Lets see the first few rows. head() lets you select the first n rows
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Printing the first three.
+print(head(data,3)) 
+```
+
+Lets count the number of VIN numbers by vehicles' year.
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Pulling and counting.
+data <- dbGetQuery(connection,"SELECT 
+                   COUNT(`vehicle vin number`),
+                   `vehicle year`
+                   FROM book_table
+                   GROUP BY `vehicle year`")
+```
+
+You should have noticed that some years are messed up. This is called 'dirty data'. These data are not super 'dirty', but it still needs cleaning.
+
+::: {.infobox .important data-latex="{important}"}
+
+You should always disconnect from the database after you are done using it, because if you and hundreds of parasites like you do not, the database will freeze at some point.
+
+::: 
+
+```{r out.width='90%', fig.asp=.75, fig.align='center'}
+# Disconnecting.
+dbDisconnect(connection)
+```
+
+This was a basic introduction to SQL. If you did not get all of it, it is fine. SQL is not hard but the number of new functions, signs, and characters can be overwhelming considering that you are also trying to memorize the rest of the stuff. When I was learning this, all these queries had layers of other functions attached to them. Very confusing. Remember me writing this: print(head(something,5))?
+
+Well, that is a chained function. When it is short like this, you still can deschipher it. You are like: 'Ok, maybe head takes first five rows and then we print it'. But now, imagine something like this:
+
+```{r eval = F, out.width='90%', fig.asp=.75, fig.align='center'}
+setDT(dbGetQuery(connection, paste0("SELECT 
+                                    COUNT(`vehicle vin number`),
+                                    `vehicle year`
+                                    FROM book_table 
+                                    GROUP BY `vehicle year`")),as.is = T). 
+```
+
+The funny thing is that this querry is exactly the same as the last one that we wrote, but it has all that extra shit on top of it. Misplace one comma or parentesis and your whole code is fucked. I would be sitting for hours getting bombarded by fucking errors because of some stupid shit like that. When you are new, you just do not know what each dot or whatever means and that is natural. We will practice with it much more in this book.
+
+You are done with the basics of R. Whatever was in this section is enough to get you started. We have looked at data types, structures, type conversiones, functions, libraries, file formats, and sql queries. That is a lot and boring, but absolutely necessary slush. There is a couple more things that I should have covered here but decided to leave them for later, loops and writing your own functions. We will not be using them any time soon. I will still talk about them later in this book, because you do need to know about them eventually. We are going back to the story. Tomorrow is Monday, you are going back to work. You have covered a lot of R ground and you think that whatever your boss throws at you tomorrow will be a piece of cake. 
+
+---
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">R, Not the Best Practices</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Nikita Voevodin</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.
