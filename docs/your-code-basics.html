@@ -24,7 +24,7 @@
 <meta name="author" content="Nikita Voevodin" />
 
 
-<meta name="date" content="2020-02-19" />
+<meta name="date" content="2020-03-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -294,7 +294,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-types-structures" class="section level2">
 <h2><span class="header-section-number">0.7</span> Data Types &amp; Structures</h2>
 <p>We have already written a few lines of code. Let’s just erase all that trash and start over.</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p>Erasing and starting over is very useful in the beginning because it helps you get better. Rewriting the same stuff over and over with some minor improvements really cements the fundamentals in your head.</p>
 </div>
 <p>Start a new script and write the following lines of code:</p>
@@ -305,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb13-5" data-line-number="5">goodPresident &lt;-<span class="st"> </span><span class="ot">TRUE</span> </a>
 <a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co"># Or you can write false here, it is up to you</span></a></code></pre></div>
 <p>There are four simple data types in R. Characters, numbers, booleans (logical), and stupid factors. Nerds will tell you that there are more types. There are, they are called complex, integers and some other nonsense. Leave these types to them, you do not need them right now. Let’s go in order.</p>
-<div class="infobox important" data-latex="{important}">
+<div class="infobox important">
 <p>In this book, I’ve tried to illustrate code the way it looks in real life. However, sometimes a line of code can be too long and won’t fit on a single line of a book (even digital), resulting in a scroll view, which isn’t a good reading experience. Therefore, from time to time, you will see me breaking a single code line in two or three lines. Don’t worry, it will work just the same in Rstudio. It might just look weird at first.</p>
 <p>Example:</p>
 <p>Something that looks like this:</p>
@@ -347,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb23-5" data-line-number="5"><span class="kw">print</span>(presidentFull)</a></code></pre></div>
 <pre><code>## [1] &quot;DonaldTrump&quot;</code></pre>
 <p>Very nice.</p>
-<div class="infobox tip" data-latex="{tip}">
+<div class="infobox tip">
 <p>You probably won’t understand why at the moment, but the paste0() function is much cooler and we’ll use it more often than ‘paste,’ because it gives us more control. It allows us to add a space whenever we want, and by avoiding that default setting it runs faster.</p>
 </div>
 <p>Now, look at how you can add that space using paste0().</p>
@@ -382,7 +382,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb34-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb34-3" data-line-number="3"><span class="kw">print</span>(Dump)</a></code></pre></div>
 <pre><code>## [1] &quot;Dump&quot;</code></pre>
-<div class="infobox tip" data-latex="{tip}">
+<div class="infobox tip">
 <p>Substr() will be a big part of your day to day programming. It is a very simple but very important function. It can be a little confusing in the beginning. Are these positions inclusive or exclusive? They are inclusive, but you’re likely to forget that. Don’t worry, it will become natural later.</p>
 </div>
 <p>As you might have noticed, every time I execute a function, I print the result. I’m only doing it for you, and you don’t really have to do it. In real life, I don’t print the results of every single operation, because I understand what the code output will be. However, it’s still a good practice to print your result, at least in the beginning. Let’s move on.</p>
@@ -417,7 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co">#This is a character:</span></a>
 <a class="sourceLine" id="cb45-2" data-line-number="2"><span class="kw">class</span>(<span class="st">&#39;70&#39;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="infobox tip" data-latex="{tip}">
+<div class="infobox tip">
 <p>Sage Tip: Adding parenthesis around a number will make it a character. Remember!</p>
 </div>
 <p>Now, back to the operatons:</p>
@@ -495,7 +495,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="factors" class="section level3">
 <h3><span class="header-section-number">0.7.4</span> Factors</h3>
-<div class="infobox warning" data-latex="{warning}">
+<div class="infobox warning">
 <p>As I mentioned before, factors are stupid and we are going to try to avoid them as much as possible. If you want to learn about factors, you’re not going to do it here. I am going to give you a basic explanation and some examples; I will also explain why I think they are stupid.</p>
 </div>
 <p>Think of factors as categories or levels. Genders would be a factor; colors would be factors as well.</p>
@@ -526,7 +526,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] red   blue  green red   blue  green red   blue  green
 ## Levels: blue green red</code></pre>
 <p>Factors group categories into levels, characters do not.</p>
-<div class="infobox warning" data-latex="{warning}">
+<div class="infobox warning">
 <p>Factors are useful for some advanced statistical operations. Once you reach that level, by all means, go ahead and start using them. Right now, factors will only get in the way. They will mess up your code. I am pretty sure; you’ll be hating them just like I do. Whatever factors are accomplishing with their levels can be accomplished by grouping regular characters without the worries of a messed-up code. Again, we will be avoiding factors as much as possible, but at least you are aware of them.</p>
 </div>
 </div>
@@ -618,7 +618,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 <a class="sourceLine" id="cb106-2" data-line-number="2">date &lt;-<span class="st"> </span><span class="kw">Sys.Date</span>() </a>
 <a class="sourceLine" id="cb106-3" data-line-number="3"><span class="co"># Printing</span></a>
 <a class="sourceLine" id="cb106-4" data-line-number="4"><span class="kw">print</span>(date)</a></code></pre></div>
-<pre><code>## [1] &quot;2020-02-19&quot;</code></pre>
+<pre><code>## [1] &quot;2020-03-31&quot;</code></pre>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="co"># Checking class.</span></a>
 <a class="sourceLine" id="cb108-2" data-line-number="2"><span class="kw">class</span>(date)</a></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
@@ -626,7 +626,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 <a class="sourceLine" id="cb110-2" data-line-number="2">characterDate &lt;-<span class="st"> </span><span class="kw">as.character</span>(date)</a>
 <a class="sourceLine" id="cb110-3" data-line-number="3"><span class="co"># Printing.</span></a>
 <a class="sourceLine" id="cb110-4" data-line-number="4"><span class="kw">print</span>(characterDate)</a></code></pre></div>
-<pre><code>## [1] &quot;2020-02-19&quot;</code></pre>
+<pre><code>## [1] &quot;2020-03-31&quot;</code></pre>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="co"># Checking class.</span></a>
 <a class="sourceLine" id="cb112-2" data-line-number="2"><span class="kw">class</span>(characterDate)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
@@ -635,7 +635,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 <a class="sourceLine" id="cb114-2" data-line-number="2">dateFirst &lt;-<span class="st"> </span><span class="kw">ymd</span>(characterDate)</a>
 <a class="sourceLine" id="cb114-3" data-line-number="3"><span class="co"># Printing.</span></a>
 <a class="sourceLine" id="cb114-4" data-line-number="4"><span class="kw">print</span>(dateFirst)</a></code></pre></div>
-<pre><code>## [1] &quot;2020-02-19&quot;</code></pre>
+<pre><code>## [1] &quot;2020-03-31&quot;</code></pre>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="co"># Checking class.</span></a>
 <a class="sourceLine" id="cb116-2" data-line-number="2"><span class="kw">class</span>(dateFirst)</a></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
@@ -643,7 +643,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 <a class="sourceLine" id="cb118-2" data-line-number="2">dateSecond &lt;-<span class="st"> </span><span class="kw">as.Date</span>(characterDate)</a>
 <a class="sourceLine" id="cb118-3" data-line-number="3"><span class="co"># Printing.</span></a>
 <a class="sourceLine" id="cb118-4" data-line-number="4"><span class="kw">print</span>(dateSecond)</a></code></pre></div>
-<pre><code>## [1] &quot;2020-02-19&quot;</code></pre>
+<pre><code>## [1] &quot;2020-03-31&quot;</code></pre>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="co"># Checking class.</span></a>
 <a class="sourceLine" id="cb120-2" data-line-number="2"><span class="kw">class</span>(dateSecond)</a></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
@@ -654,7 +654,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 <div id="vectors" class="section level3">
 <h3><span class="header-section-number">0.7.7</span> Vectors</h3>
 <p>If you are new to programming, vectors will be hard to wrap your head around right away. They are quite simple, though. However, because you are not used to working with data in that format, it will take some time to get used to. At least it was for me. I don’t know, maybe, I am so good of a teacher that you will get it right away. We will see.</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p>Anyway, we have already seen a few vectors so far. Now, I think, the easiest way to understand vectors right away is like this:</p>
 <ul>
 <li>step 1: imagine a table with some data;</li>
@@ -758,7 +758,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 <div id="data-tables-data-frames" class="section level3">
 <h3><span class="header-section-number">0.7.9</span> Data Tables (Data Frames)</h3>
 <p>Remember, a few topics ago, I told you to think of vectors as just columns inside data tables? Well, now, hear my (not only) definition of data frames (or data tables, as you might have noticed, we are using them interchangeably).</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p>Data frame is a collection of vectors of the same lengths. That’s it. Why the same number of rows? Because, imagine a table, it is a rectangle, right? Even if some rows are empty, you, still, have the same number of them.</p>
 </div>
 <p>One of the best things about working with R, if not the best, is its handling of data tables. If you have ever worked with Excel or some other tabular data handler, then R’s way of dealing with such data will be very intuitive for you as well. We will be working with tables a lot. We will use them for everything, even for things that we don’t really need them for. For example, sometimes, it is much faster and efficient to do things with vectors, instead, we will be converting vectors into tables and then doing things to them. But why? Because tables are intuitive and vectors are confusing. I am trying to explain things to you the way I wish they were explained to me. If you are a genius who gets everything right away, then you don’t need this book. Get out of here. For the rest of us tabular analysis is key to understanding everything. Through working with tables, you will eventually get the rest of the data structures and will decide when and what to use on your own. Let’s look at the tables that we have already created.</p>
@@ -806,7 +806,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 <div id="functions" class="section level3">
 <h3><span class="header-section-number">0.8.1</span> Functions</h3>
 <p>We are going to split functions in two types: ones that you wrote, and ones that were written for you. Forget about writing your own functions for now. Here, we will be covering the second type. R has tons of functions. One of the best things about R is that it’s open source. Anybody can write a function, package it, and release. Because of that, there are functions almost for anything. The flip side of that, is that there is a bunch of functions that do same shit. This makes it almost impossible to have one guiding rule for language usage - there is no one right way to do things. It also creates a lot of competition between package creators, as each tries to be the shit who created the best tool for the job.</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p>I personally enjoy to know more than one way to skin a cat (This is a joke!!! I do not support animal cruelty!!! I am serious!!!), but you might be different. There are distinct schools of thought in R, though. It’s not complete chaos so don’t worry. We will be following the two biggest ones.</p>
 </div>
 <p>Anyway, there are also two types of functions (out of those that are written for you): built-in and from the outside. The built-in (also known as base) are the functions that come pre-installed with R. You can do a lot with just them. You can do all the math and stats operations, dates, basic plots, and more. That would be fucking stupid though. I am sure, there are purists who do that. Fuck them. R is powerful and amazing because of the wealth of third-party functions that are available for free to everyone. There are functions for everything. I, obviously, can’t show you all the functions, and there is no need to dive into them now, but I will show you a few as an example.</p>
@@ -837,7 +837,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 <p>Fixing column names:</p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1"><span class="co"># Renaming.</span></a>
 <a class="sourceLine" id="cb157-2" data-line-number="2"><span class="kw">colnames</span>(data) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;letters&#39;</span>,<span class="st">&#39;numbers&#39;</span>,<span class="st">&#39;dates&#39;</span>) </a></code></pre></div>
-<div class="infobox caution" data-latex="{caution}">
+<div class="infobox caution">
 <p>To access a column of a dataframe, you will use the $ operator between the dataframe’s name and the column’s name. Like this:</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1"><span class="co"># Accessing the column &#39;letters&#39;</span></a>
 <a class="sourceLine" id="cb158-2" data-line-number="2">data<span class="op">$</span>letters</a></code></pre></div>
@@ -911,11 +911,11 @@ Luckily, conversions are quite simple and very uniform across different types, m
 ## 2       b    test    2.34 20190102         2       3
 ## 3       c    test    3.34 20190103         3       4
 ## 4       d    test    4.34 20190104         4       5</code></pre>
-<div class="infobox caution" data-latex="{caution}">
+<div class="infobox caution">
 <p>This is a good time to introduce the ‘%&gt;%’ (pipe operator). A pipe operator will be very important for us. We will be using it in this book a lot and will continue using it all the way through the last book where we will be doing some very advanced asynchronous programming. This glues all that. Very important.</p>
 </div>
 <p>Now, here is what it means. Think of %&gt;% (pipe) operator as the word ‘THEN’. Let’s look at the operation we executed above:</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <ul>
 <li>STEP 2) data &lt;-</li>
 <li>STEP 1) data %&gt;% separate(letters, into = c(“columnA”, “columnB”), by = ’ ’)</li>
@@ -935,7 +935,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 </ul>
 </div>
 <p>Apart from the ordering being not from left to right, it is pretty fucking straightforward. Now, on top of being somewhat easy to understand, this type of syntax is also very efficient. You can chain lots of operations like that. I know that you don’t give a shit about efficiency at the moment, you are just trying to get this to work. Therefore, here is a very simple scheme:</p>
-<div class="infobox caution" data-latex="{caution}">
+<div class="infobox caution">
 <p>dataframe &lt;- dataframe %&gt;% function(column) %&gt;% function(column) %&gt;% ….</p>
 </div>
 <p>You can basically chain as many as you want. We will see that in action later.</p>
@@ -954,7 +954,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 <div id="packages-libraries" class="section level3">
 <h3><span class="header-section-number">0.8.2</span> Packages (Libraries)</h3>
 <p>Packages or Libraries are just containers for functions. There are tons of libraries out there, and that is great. We pretty much covered this whole topic of how packages and functions are amazing and how they do all these different things. So, in this part, I am just going to give you a list of libraries that you are going to install and drag with you every time you launch a new project. You will see some people who will be like “Bro, it is wrong to have so many packages loaded all the time.” Do not listen, they do not know what they are talking about. Dragging a bunch of packages, even if you will not use some of them, will save you a lot of time. So, here:</p>
-<div class="infobox caution" data-latex="{caution}">
+<div class="infobox caution">
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1">  <span class="kw">library</span>(lubridate) <span class="co"># for working with dates/times</span></a>
 <a class="sourceLine" id="cb180-2" data-line-number="2">  <span class="kw">library</span>(data.table) <span class="co"># ecosystem for working with tables</span></a>
 <a class="sourceLine" id="cb180-3" data-line-number="3"><span class="co"># and averall data manipulation</span></a>
@@ -985,7 +985,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 <h3><span class="header-section-number">0.8.4</span> CSV</h3>
 <p>In my experience, CSV is, by far, the most used format to store data in R. It’s compact, fast, supported by excel and other similar editors, and well supported by R. The fact that it is accessible by an Excel kind of software is very important. A lot of times you will be doing some analysis for your superiors. They might not know R, but they will know Excel. You should be able to send them your data in the format that they can consume.</p>
 <p>This is how you save your table as a CSV:</p>
-<div class="infobox tip" data-latex="{tip}">
+<div class="infobox tip">
 <ul>
 <li>1.Get the path of where you want to store the file. If you do not know how - on windows go to that folder and on top you will see the path, copy it.</li>
 <li>2.Use that path as the second argument to the function. Like this: fwrite(data, ‘path’).</li>
@@ -1028,7 +1028,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 <div id="sql-queries" class="section level3">
 <h3><span class="header-section-number">0.8.7</span> SQL Queries</h3>
 <p>SQL is extremely important. You won’t go far without it. I won’t teach you the language itself in this book, but I’ll show you the most used commands and how to execute them. Here, I want to show you how to connect to a database and retrieve some data. I’ve set up a practice MySQL database, and, from now on, we will be interacting with it a lot. Let’s connect to it and retrieve some data. Before we do though, I want to say a few things about databases.</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p>This is how I think about the types of databases out there.</p>
 <ul>
 <li>There are old piece of shit databases that, if you’re unlucky, you will be forced to work with at work. That would happen if your organization has old infrastructure and isn’t planning to change it. There won’t be a difference in SQL language between fast and slow databases so it doesn’t matter. You won’t be wasting time learning it, you will just struggle a lot with speed.</li>
@@ -1067,7 +1067,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 <a class="sourceLine" id="cb192-2" data-line-number="2">data &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(connection,<span class="st">&quot;SELECT * FROM book_table limit 5&quot;</span>)</a></code></pre></div>
 <p>I want to spend some time here and take a look at what we just did. The overall syntax should be more or less clear to you now: we are applying some function on the right side of the arrow ( dbGetQuery(connection,“SELECT * FROM book_table limit 5”) ) and storing the result inside of the variable on the left side (data). The function that we are using is ‘dbGetQuery’. It has two arguments: the database connection, and the actual SQL command. The connection should be clear to you: we connected to the database with the credentials and stored that connection in the variable connection. That’s it. Now, about the actual SQL command - “SELECT * FROM book_table limit 5”. This is actual SQL language. Basically, we just used another programming language inside of R. This is how SQL works: there are key commands, and there are inputs. In our case, key commands are SELECT, FROM, LIMIT. The inputs are: *, book_table, 5.</p>
 <p>Lets go line by line:</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <ul>
 <li>‘SELECT’ - every sql query will start with SELECT</li>
 <li>’*’ - means all or everything</li>
@@ -1090,7 +1090,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 <a class="sourceLine" id="cb194-4" data-line-number="4"><span class="st">                   `vehicle year`,</span></a>
 <a class="sourceLine" id="cb194-5" data-line-number="5"><span class="st">                   `last date updated` </span></a>
 <a class="sourceLine" id="cb194-6" data-line-number="6"><span class="st">                   FROM book_table&quot;</span>)</a></code></pre></div>
-<div class="infobox important" data-latex="{important}">
+<div class="infobox important">
 <p>Remember! There is no comma before FROM!</p>
 </div>
 <p>Let’s see the first few rows. head() lets you select the first n rows.</p>
@@ -1108,7 +1108,7 @@ Luckily, conversions are quite simple and very uniform across different types, m
 <a class="sourceLine" id="cb197-5" data-line-number="5"><span class="st">                   FROM book_table</span></a>
 <a class="sourceLine" id="cb197-6" data-line-number="6"><span class="st">                   GROUP BY `vehicle year`&quot;</span>)</a></code></pre></div>
 <p>You should have noticed that some years are messed up. This is called ‘dirty data’. These data are not super ‘dirty’, but it still needs cleaning.</p>
-<div class="infobox important" data-latex="{important}">
+<div class="infobox important">
 <p>You should always disconnect from the database after you are done using it, because if you and hundreds of parasites like you do not, the database will freeze at some point.</p>
 </div>
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1"><span class="co"># Disconnecting.</span></a>

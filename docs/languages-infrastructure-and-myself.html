@@ -24,7 +24,7 @@
 <meta name="author" content="Nikita Voevodin" />
 
 
-<meta name="date" content="2020-02-19" />
+<meta name="date" content="2020-03-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,7 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s face it, you are new to programming and explaining that R is a functional language and that Java is an object-oriented language won’t make any sense to you. Instead, I’ll give you a few of my thoughts on how I see the R universe, and how it interacts with other languages. I will not cover all the languages, not even close, and I might not even be hundred percent accurate all the time; however, I will cover everything that I think you need to start with R and reach a solid post-noob level.</p>
 <p>The goal here is to make sure you have an overall understanding of the environment you are working in. I want to make sure that you retain as much information as possible. Once you feel comfortable with your level, obviously, go ahead and learn some advanced geek stuff about different languages, the who the what the why.</p>
 <p>Firstly, R is an open-source aka free programming language that focuses on working with data, statistical computation, and graphical visualization. It is widely used by academics, statisticians, data miners, and big data companies to work with all sorts of information. Just to give you a perspective of how popular it is in its field, here is a list of 10 largest R users:</p>
-<div class="infobox caution" data-latex="{caution}">
+<div class="infobox caution">
 <ul>
 <li>Facebook</li>
 <li>Google</li>
@@ -334,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="diagram-and-related-languages" class="section level3">
 <h3><span class="header-section-number">0.3.5</span> Diagram and Related Languages</h3>
 <p>So to sum this up, if you look at the diagram again from right to left:</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p>Excel is a point and click tool and you should only use it for some final touches; STATA, SPSS, and SAS are the bottom of the barrel and you should stay away from them; and R and Python are both programming languages that you really can’t go wrong with.</p>
 </div>
 <p>This was an overview of what R is and how it compares to some other similar and not so similar languages. Right now, though, we don’t need to know anything else about them, because we won’t be interacting with any of them for the first half of the book.</p>
@@ -343,15 +343,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="sql" class="section level3">
 <h3><span class="header-section-number">0.3.6</span> SQL</h3>
 <p>Let’s start with SQL. One of the things you’ll be doing almost every day is interacting with a database or databases. I know, because that’s what I’ve doing since the second day at my R-requiring job. That is what I’m still doing today and that’s what I’ll be doing for as long as I am programming in any language. Here is a brief intro to SQL: SQL is sort of a programming language, but it really isn’t. It’s a language that you’ll use to interact with databases.</p>
-<div class="infobox caution" data-latex="{caution}">
+<div class="infobox caution">
 <p>You can’t really avoid using SQL as it’s the only way to get or add data from or to a database, and if there is another way that I don’t know about, then you don’t need to know about it at the moment either, because it’s definitely some bullshit way nobody uses. Just remember, SQL is your language for database interaction. SQL is important, and the best thing about it is that it is quite easy to pick up, at least the basics.</p>
 </div>
 <p>SQL is quite easy. Obviously, there is a bunch of complicated and advanced stuff that you can do with SQL, but you will not need that now. Instead, we will do some very simple pulls in SQL and compliment it with some R language to clean and aggregate our data. After you finish the book and build a few small apps requiring some basic SQL, you will obviously spread your wings and learn some advanced SQL, but that will be later.</p>
 <p>So, that was SQL. If you’re new like I was a couple of years ago you also want to know what a database is and why we need it.</p>
-<div class="infobox tip" data-latex="{tip}">
+<div class="infobox tip">
 <p>A database is just that, a base with data, storage where you keep all kinds of information in the form of tables. Imagine an Excel table.</p>
 </div>
-<div class="infobox warning" data-latex="{warning}">
+<div class="infobox warning">
 <p>If you can’t imagine an excel spreadsheet, then you should really take some prerequisites before continuing.</p>
 </div>
 <p>Well, database is just a collection of such tables. Why can’t we just use an excel file for our data storage needs? We could, but an excel table can only hold so much. Imagine you’re running a store that sells 1 million bananas every day. You’ll have to create a new spreadsheet every day just to keep your banana selling records. What if you’re also selling some rifles? Your records will get out of hand very quickly and you’ll start losing a lot of information. Instead of paying attention to your weird banana/rifle selling business, you’ll be worrying about your excel spreadsheets not opening. Databases solve that problem. They are built specifically to store virtually infinite number of banana and rifle records and they help us link information across those tables. On top of that, databases are fast, and the SQL language makes working with them easy. So, remember, for a lot of data (millions of rows) we are using databases and SQL. You can still use an excel type of file to do some small jobs and share them via emails and so forth, nothing wrong with that; we will in fact do some of that.</p>
@@ -359,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="about-htmlcssjavascript" class="section level3">
 <h3><span class="header-section-number">0.3.7</span> About HTML/CSS/JavaScript</h3>
 <p>Cascading Style Sheets. Fancy, right? CSS is not really a programming language; it’s a styling language. Every color, every curved line, sliding panel, animation, and all the fancy stuff that you see when you browse the internet or use apps is styled using CSS or at least some implementation of CSS. I mentioned that CSS is not a programming language; it’s instead a part of the family of three languages, HTML/CSS/JavaScript. Basically, these three languages power the modern internet. Nearly 100% of what you see when opening your browser is these languages. They DO work with other languages to do some stuff behind the scenes like shopping carts, statistics, machine learning, etc. but, generally, whatever you see in front of you is some combination of these three languages.</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p>To cement it in your head, I want you to think about these languages as a sentence structure. HTML is a noun; it defines the object. The object being a web page. So, HTML creates a web page, just an empty skeleton, no colors, no pop ups, no styling, nothing really works yet. All you are seeing are some text, some buttons, drop downs maybe, unformatted pictures, but they aren’t really doing anything yet. Hopefully, you get the picture. If not, check out the one below.</p>
 </div>
 <center>
@@ -376,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </center>
 <p>If you want your website or your app to do something, you’re going to need JavaScript. JavaScript in this setup is the verb that defines the actions of the page, the page that we just made with HTML and styled with CSS. A simple example of what JavaScript does in combination with the other two is the following:</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p>HTML creates a button; CSS makes it blue and its text white and adds animation to it when its clicked; JavaScript makes sure that when you click that button something happens, a plot is generated or a set of data is printed, or some calculation is happening and the result is shown on the screen.</p>
 </div>
 <p>I hope this paints a clear picture of this family of languages and how they interact with each other, and with you.</p>
@@ -391,7 +391,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="about-infrastructure" class="section level2">
 <h2><span class="header-section-number">0.4</span> About Infrastructure</h2>
 <p>Apart from R itself, Shiny tools, SQL, and the side languages mentioned in the previous section, there is infrastructure. Infrastructure is everything that makes the production and consumption of your product possible.</p>
-<div class="infobox caution" data-latex="{caution}">
+<div class="infobox caution">
 <p>Infrastructure is very important. The infrastructure we cover in this and later books will include database and storage and hosting options, API calls, optimization, and some other tools like docker and electron, which also fall under the category of infrastructure.</p>
 </div>
 <div id="databases" class="section level3">
@@ -406,7 +406,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">0.4.3</span> Other tools</h3>
 <p>In the fourth book, we will start introducing more advanced concepts and tools like API calls, dockerized apps, optimization and some others. Even though I call these tools advanced, it doesn’t mean they are inherently hard to learn. In fact, they are much easier to pick up once you’re ready. The reason they’re in the advanced category is that you must first learn all the things that I’ve been talking about up until now before you even need to know what these advanced things do. The reality is you just don’t need them in the beginning.</p>
 <p>That was our brief introduction into the topic of infrastructure. The coolest thing about infrastructure is that it, maybe, sounds boring at first. You’re thinking, I just want to create something cool. And apps are what I and everybody see and that is why it is cool.</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p>Well, my answer to you is, You will be surprised, by how exciting it is to build your own database for the first time, connect to it, load and pull some data, and for all this to work. Or to set up your hosting, put your app there and open it from your phone and start sending that shit to your friends to brag. You will see, just like I did!</p>
 </div>
 <p>All I’m saying is do not assume that back end (nerd’s term for the infrastructure that we are talking about now) is something boring or something you do not want to be doing. I can almost guarantee that once you’ve built your first few apps and showed them to people, you’ll be more exited to talk about the stuff behind that app, the stuff that makes it run. The picture in front of peoples’ eyes, the front-end, will become a noob thing at that point.</p>
@@ -416,21 +416,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">0.5</span> About Me</h2>
 <p>In this section, I think, I’m trying to relate to you, a person with no computer science degree. It is a general idea that coding is hard. And what I say to this is, It is absolutely CORRECT! Coding is incredibly hard and all those asshole-pretend-gurus on YouTube that say learn xyz language in 20 minutes or 5 hours or 1 month are fucking lying. Those videos are click bait that won’t teach you shit. It will take you at least 4-5 months of consistent everyday work to get to an initial comfort level.</p>
 <p>Now, having said all that downbeat stuff, I want to assure you that you don’t need a computer science degree to become a professional software engineer or a data engineer or a database engineer. I don’t hold a computer science degree; yet, I’ve been quite successful with coding and feel qualified to teach you. But what about those people who went to school for this?</p>
-<div class="infobox caution" data-latex="{caution}">
+<div class="infobox caution">
 <p>Firstly, you should only worry about your own skills as there will always be better programmers than you. So what? The demand for coding specialists will only increase and there will never be enough people who programmed since kindergarten. That’s where YOU come in. Secondly, what do you think kids at college do? At best, if they’re full-time, they go to school twice a week, take two coding classes at best (A WEEK), then some other two useless classes like underwater poetry and hipster studies just to graduate. After that, they go home and jerk off for the rest of the week or play video games or both. Only a minority will commit an appropriate amount of time to learning code. What do you think they know in the end? Obviously, they’re going to have some fancy resume that will say something like Python, C++, JavaScript, PHP, Spark mumbo jumbo. But when you sit them down and ask them to build something, they’ll be lost. It’s not to say that there is much wrong with learning at the job, it’s just I don’t want you to operate under assumption that you’re so far behind its impossible to catch up.</p>
 </div>
 <p>I recently watched a documentary about hackers and the companies guarding against them. In that documentary they showed unpaid guys in their hoodies, hacking and learning from home every day, almost all day, way past nine to five with real commitment and intent, just for fun. At the same time, they show a private company with a bunch of college graduates-programmers struggling to prevent their clients from hacker attacks. You can see all that nice equipment, interactive maps, and so forth. But they still lose to those hackers a lot of times. Why is that? The reason is dedication. I am sure there are exceptions, but just like with college students, majority of employees are there nine to five, they will take any break possible and are really looking forward to the end of the day, or to accumulate enough vacation days to get the fuck out for a while. The hacker bro, on the other hand, sits there and learns relentlessly about some new cool way to fuck someone up. You might say, but he is outnumbered.</p>
-<div class="infobox caution" data-latex="{caution}">
+<div class="infobox caution">
 <p>In programming, you are only as good as the number of hours that you have coded, not the number of degrees you got or years you have spent to get them. A hacker doesn’t need to spend more hours programming than the whole team of that company combined, just more than their best programmer. In that situation, it’s like a case of zero multiplied by any number is still zero. If that hacker is much better than their best person, he will run circles around them, and they won’t be able to do much. This little story is just my way to cement something in your head. Unlike medical or legal fields, in coding, you are only as good as your code. And the only way to improve is to code. Certificates alone will not get you very far.</p>
 </div>
 <p>So, what makes me say with confidence that you do not need a degree to succeed at this, and moreover, what makes me qualified to teach you all these things? Well allow me to introduce myself, the anti-hero of this book. My name is Nikita Voevodin, I am a professional data analyst and software developer with a concentration in interactive visualizations and database infrastructure. I spent the last half of the decade doing legislative, budget, policy, and data analysis for New York City and New York State. My work involved developing and automating big data processes, building and interacting with databases, creating apps and dashboards for my superiors and the public, as well as conducting high level research to empower legislation in the area of city transportation. I hold three separate degrees, BS in economics, BA in political science, and MPA in public policy. As you can see, I don’t hold a degree in computer science, or anything related. In fact, apart from having a PC since I was nine and using it mostly for games, and learning some excel in college, I had no coding background of any kind. I never even knew anybody who coded. This book is the chronological representation of my progress from zero to a quite high level of proficiency. Now, what makes me qualified to teach you? Ultimately, you will be the judge of that, but I would also like to list some of my portfolio items in R. First, I went from knowing practically nothing about programming to doing some advanced stuff within a year. Secondly, I am an author or co-author of R Shiny apps like:</p>
 <div id="tlc-datahub" class="section level3">
 <h3><span class="header-section-number">0.5.1</span> TLC DataHub</h3>
 <p>The ‘Hub’ as I call it, is by far the most complete and advanced thing that I created. It is used by hundreds of users every day and is listed on the front page of the Taxi &amp; Limousine Commission of New York City. Here is the intro about it:</p>
-<div class="infobox tip" data-latex="{tip}">
+<div class="infobox tip">
 <p>TLC Data Hub offers users a new and convenient location to access and visualize taxi and for hire industry data. TLC Data Hub uses public data available on NYC Open Data and the TLC website and does not use, track or display any private information of the drivers or companies. The Hub currently consists of two dashboards. The Trip Viz dashboard allows the public to run queries on TLC-collected trip data while the ‘Industry metrics’ dashboard provides standard visualizations of monthly industry trends.</p>
 </div>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p><a href="https://tlcanalytics.shinyapps.io/tlc_dash/">TLC Data Hub</a>
 <img src="datahub.png" width="781" /></p>
 </div>
@@ -438,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tlc-vin-decoder" class="section level3">
 <h3><span class="header-section-number">0.5.2</span> TLC VIN Decoder</h3>
 <p>The decoder is a utility app that utilizes the NHTSA API to give you a lot of useful information about either a single vehicle or a list of vehicles that you pass into it. It is used by the Taxi &amp; Limousine Commission of New York City to keep track of electric vehicles, for example.</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p><a href="https://tlcanalytics.shinyapps.io/decoder/">TLC VIN Decoder</a>
 <img src="vindecoder.png" width="782" /></p>
 </div>
@@ -446,7 +446,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tlc-datameetup-app" class="section level3">
 <h3><span class="header-section-number">0.5.3</span> TLC DataMeetup App</h3>
 <p>I am or used to be a host of monthly data meetups at TLC. TLC Data Meetup is or was a venue where employees interested in technology would come together to share ideas, tips, and tricks in relation to technology and their research. My manager Fausto Lopez and I created the following app to streamline the processes of registration and presentation.</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p><a href="https://tlcanalytics.shinyapps.io/tasks/">TLC Data Meetup App</a>
 <img src="meetup.png" width="775" /></p>
 </div>

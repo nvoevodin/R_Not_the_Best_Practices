@@ -24,7 +24,7 @@
 <meta name="author" content="Nikita Voevodin" />
 
 
-<meta name="date" content="2020-02-19" />
+<meta name="date" content="2020-03-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -290,11 +290,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="flexdahsboard" class="section level1 unnumbered">
 <h1>FlexDahsboard</h1>
 <p>You are back at work. Your completed your first major assignment and really impressed you superiors. You had a bit more free time and since you did not want to waste it, you spent that time learning interactive mapping techniques. You have built a few prototypes and even showed them around at work. People there are impressed that you continue developing but your place is very bottomline oriented and you start hearing questions like: ‘how can we use a map like this?’ or ‘can we create a dashboard around it?’. After the euphoria of learning something new and cool subsides, you should really start thinking about the utility of you work.</p>
-<div class="infobox caution" data-latex="{caution}">
+<div class="infobox caution">
 <p>Producing scattered visualizations is ok, however, you work will be valued much more if you also include a presentational component to it. What kind of presentational component? Am I not fucking amazing already? You are. Compared to yourself who did not know shit just a few weeks ago, that is.</p>
 </div>
 <p>So, put aside your imagined glory and lets learn another cool presentation tool. It is called ‘flexdashboard’, and it is similar to the Rmarkdown that we covered at the end of the main assignment. The difference is the layout arrangement. The Rmardown is a report type of document where informations is presented vertically paragraph after paragraph. The flexdashboard lets you create a real dashboard with tabs, buttons, dropdowns, etc. It is as static as a markdown, however, if you dive deeper into it, there is a way to make it truly dynamic. We will not be doing that just yet, though. In this section, again, we will learn just enough about the topic so we can add it to our arsenal of R tools.</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p>Before we begin, I want to say that flexdashboard is definitely a useful tool that you should know about. For me personally, it was a stepping stone to the next and the biggest for me topic ‘RShiny’. The flexdashboard is great to create a quick report in the dashboard format, but it lacks the features that I was looking for when I was learning. I used it twice during my first year of working with R. The first time is for this: <a href="https://medium.com/@NYCTLC/visualizing-taxis-and-for-hire-vehicle-models-in-nyc-19278ad23466" class="uri">https://medium.com/@NYCTLC/visualizing-taxis-and-for-hire-vehicle-models-in-nyc-19278ad23466</a> and particularly for this dashboard: <a href="https://tlc_blog_posts.gitlab.io/word_cloud/car_cloud1.html" class="uri">https://tlc_blog_posts.gitlab.io/word_cloud/car_cloud1.html</a>. The second time was to generate a seriously complicated report for the TLC DATA HUB that I created for the Taxi and Limousine Commission of New York City here: <a href="https://tlcanalytics.shinyapps.io/tlc_dash/" class="uri">https://tlcanalytics.shinyapps.io/tlc_dash/</a> (the button ‘Download This Page’ will generate a flexdashboard report). Although, I am saying that it lacks the functionality that I wanted, without knowing it, I would not be able to generate that kind of sophisticated report for the TLC DATA HUB.</p>
 </div>
 <p>Anyway, I want you to create a new project. You should know how by now. If not, go back. In the new project, open a new R file and install the flexdashboard package.</p>
@@ -442,7 +442,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </center>
 <p>Now, paste the following code in the empty chunk provided by the template under the ‘### Chart C’: valueBox(injuredAndKilled$injured, icon = ‘fa-angry’, color = ‘warning’). What does this mean?</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p>Well, the valueBox() is the function for value boxes. It takes the number (which is contained in the column ‘injured’ of the table ‘injuredAndKilled’), icon (we are using the fontawesome icon library, here is the link for more information: <a href="https://fontawesome.com/icons?d=gallery" class="uri">https://fontawesome.com/icons?d=gallery</a>), and color. You might wonder, what does color = ‘warning’ mean? It is the bootstrap-library standard color. You will learn about bootsrap in the future. For now, just know that bootstrap is a styling library developed by tweeter for web developement. There are just a few standard colors in bootstrap. For instance, warning means orange.</p>
 </div>
 <center>
@@ -459,7 +459,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </center>
 <p>Great. As you can see, we got an orange value box displaying the number of injuries in a big fat font with an angry face icon.</p>
-<div class="infobox note" data-latex="{note}">
+<div class="infobox note">
 <p>Value boxes are extremely important, because they can highligh the most important numbers in your report or dashboard.</p>
 </div>
 <p>Lets add the second value box displaying the number of killed. We will use red color and some different icon for it. If we just add another chunk with similar code, the value boxes will overlap for some reason. We need to add ‘### Chart D’ for the second value box to be properly displayed. It does not have to be ‘Chart D’ precisely, it be called anything. We will rename them all later. Use the illustration below as reference.</p>
@@ -521,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="conclusion" class="section level2">
 <h2><span class="header-section-number">0.24</span> Conclusion</h2>
 <p>In this section we covered everything that you need to really get started with this cool tool. There are more than just two layouts that I showed you here. However, these two are the easiest to get started with. You should use them as baselayers for your experimentations. As I said a few times here, it is much much easier to take a working prototype and start layering thing on top. You can do interesting things with flexdashboard. You can add tabs to boxes and even add multiple pages. At the moment, it should be impressive for you, but you will quickly realize, just like I did, that flexdashboard can not do all the thing that you want. Therefore, there is no point in trying to truly master it. Instead, it makes sence to practive with it a little bit, add it to your toolbox, and move on to the topic of web applications.</p>
-<div class="infobox caution" data-latex="{caution}">
+<div class="infobox caution">
 <p>This is the end of this book. I will not be teaching you anything else here. Instead, as a bonus, I want to show you a little preview of what we will be doing in the next books.</p>
 </div>
 <hr />
