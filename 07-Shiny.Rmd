@@ -8,7 +8,7 @@ Straight from the RStudio website:
 
 :::
 
-This is a bonus section, so I will not teach you anything here. I just want to talk about the Shiny package or framework if we can call it that. Shiny is a package, however, it is so big and spun so many additions that I want to call it a framework. If you do not know what a framework is, it is something between a package and a whole new language. Anyway, Shiny is big and it has its own special sintax. That is why I want to call it a framework.
+This is a bonus section, so I will not teach you anything here. I just want to talk about the Shiny package or framework, if we can call it that. Shiny is a package, however, it is so big and spun so many additions that I want to call it a framework. If you do not know what a framework is, it is something between a package and a whole new language. Anyway, Shiny is big and it has its own special sintax. That is why I want to call it a framework.
 
 ::: {.infobox .note data-latex="{note}"}
 
@@ -16,7 +16,7 @@ Around the time when I was messing around with maps and flexdashboards, I starte
 
 :::
 
-Anyway, I started learning Shiny and it was amazing. Basically, in a matter of days, I turned from a data genetor to a web app developer. It was definitely hard and it took me many months, but even in the beginning, I knew that this is how I will learn the rest of R. Below is the generic Shiny App that uses data that RStudio provides for us. The app does not do much, but you can already see reactivity. Just copy the code and paste it into a new R script and it will render an app. 
+Anyway, I started learning Shiny and it was amazing. Basically, in a matter of days, I turned from a data janitor to a web app developer. It was definitely hard and it took me many months, but even in the beginning, I knew that this is how I will learn the rest of R. Below is the generic Shiny App that uses data that RStudio provides for us. The app does not do much, but you can already see reactivity. Just copy the code and paste it into a new R script and it will render an app. 
 
 ```{r eval = F, out.width='90%', fig.asp=.75, fig.align='center'}
 # Installing shiny
@@ -74,7 +74,7 @@ It is not our goal here to understand the code, but, if you are curious, below i
 
 </center>
 
-This is what this generic app should look by the way:
+This is what this generic app should look like by the way:
 
 </center>
 
@@ -82,7 +82,7 @@ This is what this generic app should look by the way:
 
 </center>
 
-Lets take one of the datasets that we saved a while ago and generate our own app by modifying that generic code. 
+Let's take one of the datasets that we saved a while ago and generate our own app by modifying that generic code. 
 
 First, I will load the libraries that I will need:
 
@@ -97,7 +97,7 @@ library(scales)
 library(plotly)
 ```
 
-Then, I will load some data that we saved a while ago. I think, that dataset holds average ages of incoming vehicles by month.
+Then, I will load some data that we saved a while ago. I think, that data-set holds average ages of incoming vehicles by month.
 
 ```{r echo = F, out.width='90%', fig.asp=.75, fig.align='center'}
 forBarPlot <- fread('dataForBarPlot.csv')
@@ -174,7 +174,7 @@ Great! We built an app. What now? It is a good start. Keep practicing and in six
 
 :::
 
-This was just a glimpse of what is comming in the next books. This app lives on your computer now. It will not open on anybody elses computer unless that computer has R installed along with everything that you used to created this app. To share a Shiny app, you need to host it. That and many other techniques and tricks will be covered in the next books. 
+This was just a glimpse of what is coming in the next books. This app lives on your computer now. It will not open on anybody else's computer unless that computer has R installed along with everything that you used to created this app. To share a Shiny app you need to host it. That and many other techniques and tricks will be covered in the next books. 
 
 
 ---

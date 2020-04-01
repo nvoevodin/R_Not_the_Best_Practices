@@ -24,7 +24,7 @@
 <meta name="author" content="Nikita Voevodin" />
 
 
-<meta name="date" content="2020-03-31" />
+<meta name="date" content="2020-04-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -289,20 +289,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="flexdahsboard" class="section level1 unnumbered">
 <h1>FlexDahsboard</h1>
-<p>You are back at work. Your completed your first major assignment and really impressed you superiors. You had a bit more free time and since you did not want to waste it, you spent that time learning interactive mapping techniques. You have built a few prototypes and even showed them around at work. People there are impressed that you continue developing but your place is very bottomline oriented and you start hearing questions like: ‘how can we use a map like this?’ or ‘can we create a dashboard around it?’. After the euphoria of learning something new and cool subsides, you should really start thinking about the utility of you work.</p>
+<p>You are back at work. Your completed your first major assignment and really impressed you superiors. You had a bit more free time and since you did not want to waste it, you spent that time learning interactive mapping techniques. You have built a few prototypes and even showed them around at work. People there are impressed that you continue developing but your place is very bottom-line oriented and you start hearing questions like: ‘how can we use a map like this?’ or ‘can we create a dashboard around it?’. After the euphoria of learning something new and cool subsides, you should really start thinking about the utility of you work.</p>
 <div class="infobox caution">
-<p>Producing scattered visualizations is ok, however, you work will be valued much more if you also include a presentational component to it. What kind of presentational component? Am I not fucking amazing already? You are. Compared to yourself who did not know shit just a few weeks ago, that is.</p>
+<p>Producing scattered visualizations is OK, however, you work will be valued much more if you also include a presentation component to it. What kind of presentation component? Am I not fucking amazing already? You are. Compared to yourself who did not know shit just a few weeks ago, that is.</p>
 </div>
-<p>So, put aside your imagined glory and lets learn another cool presentation tool. It is called ‘flexdashboard’, and it is similar to the Rmarkdown that we covered at the end of the main assignment. The difference is the layout arrangement. The Rmardown is a report type of document where informations is presented vertically paragraph after paragraph. The flexdashboard lets you create a real dashboard with tabs, buttons, dropdowns, etc. It is as static as a markdown, however, if you dive deeper into it, there is a way to make it truly dynamic. We will not be doing that just yet, though. In this section, again, we will learn just enough about the topic so we can add it to our arsenal of R tools.</p>
+<p>So, put aside your imaginary glory and lets learn another cool presentation tool. It is called ‘Flexdashboard’, and it is similar to Rmarkdown that we covered at the end of the main assignment. The difference is the layout arrangement. The Rmardown is a report type of document where information is presented vertically, paragraph after paragraph. The flexdashboard lets you create a real dashboard with tabs, buttons, drop-downs, etc. It is as static as a markdown, however, if you dive deeper into it, there is a way to make it truly dynamic. We will not be doing that just yet, though. In this section, again, we will learn just enough about the topic so we can add it to our arsenal of R tools.</p>
 <div class="infobox note">
-<p>Before we begin, I want to say that flexdashboard is definitely a useful tool that you should know about. For me personally, it was a stepping stone to the next and the biggest for me topic ‘RShiny’. The flexdashboard is great to create a quick report in the dashboard format, but it lacks the features that I was looking for when I was learning. I used it twice during my first year of working with R. The first time is for this: <a href="https://medium.com/@NYCTLC/visualizing-taxis-and-for-hire-vehicle-models-in-nyc-19278ad23466" class="uri">https://medium.com/@NYCTLC/visualizing-taxis-and-for-hire-vehicle-models-in-nyc-19278ad23466</a> and particularly for this dashboard: <a href="https://tlc_blog_posts.gitlab.io/word_cloud/car_cloud1.html" class="uri">https://tlc_blog_posts.gitlab.io/word_cloud/car_cloud1.html</a>. The second time was to generate a seriously complicated report for the TLC DATA HUB that I created for the Taxi and Limousine Commission of New York City here: <a href="https://tlcanalytics.shinyapps.io/tlc_dash/" class="uri">https://tlcanalytics.shinyapps.io/tlc_dash/</a> (the button ‘Download This Page’ will generate a flexdashboard report). Although, I am saying that it lacks the functionality that I wanted, without knowing it, I would not be able to generate that kind of sophisticated report for the TLC DATA HUB.</p>
+<p>Before we begin, I want to say that flexdashboard is definitely a useful tool that you should know about. For me personally, it was a stepping stone to the next and the biggest for me topic, ‘RShiny’. Flexdashboard is great to create a quick report in dashboard format, but it lacks features that I was looking for when I was learning. I used it twice during my first year of working with R. The first time for this: <a href="https://medium.com/@NYCTLC/visualizing-taxis-and-for-hire-vehicle-models-in-nyc-19278ad23466" class="uri">https://medium.com/@NYCTLC/visualizing-taxis-and-for-hire-vehicle-models-in-nyc-19278ad23466</a> and particularly for this dashboard: <a href="https://tlc_blog_posts.gitlab.io/word_cloud/car_cloud1.html" class="uri">https://tlc_blog_posts.gitlab.io/word_cloud/car_cloud1.html</a>. The second time was to generate a seriously complicated report for the TLC DATA HUB that I created for the Taxi and Limousine Commission of New York City here: <a href="https://tlcanalytics.shinyapps.io/tlc_dash/" class="uri">https://tlcanalytics.shinyapps.io/tlc_dash/</a> (the button ‘Download This Page’ will generate a flexdashboard report). Although, I am saying that it lacks functionality that I wanted, without knowing it, I would not be able to generate that kind of sophisticated report for the TLC DATA HUB.</p>
 </div>
 <p>Anyway, I want you to create a new project. You should know how by now. If not, go back. In the new project, open a new R file and install the flexdashboard package.</p>
 <div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb476-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&#39;flexdashboard&#39;</span>) </a></code></pre></div>
 <p>Before we start working on the dashboard, we need to get the data ready again.</p>
 <div id="data" class="section level2">
 <h2><span class="header-section-number">0.22</span> Data</h2>
-<p>We need to load the libraries and connect to the database again. After that, we will prepare three datasets that we will display using the dashboard. The first dataset will have crashes per zipcode in 2019, and we will use it for the map. The second dataset will have crashes per month in 2019 and we will create a ggplotly bar plot out of it. The third dataset will have the total number of injured and the total number of killed in those crashes. We will use these numbers for value boxes. Value boxes are important, you will see what they look like.</p>
+<p>We need to load the libraries and connect to the database again. After that, we will prepare three data-sets that we will display using the dashboard. The first data-set will have crashes per zip-code in 2019, and we will use it for a map. The second data-set will have crashes per month in 2019 and we will create a ggplotly bar plot out of it. The third data-set will have the total number of injured and the total number of killed in those crashes. We will use these numbers for value boxes. Value boxes are important, you will see what they look like.</p>
 <div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" data-line-number="1"><span class="co"># Loading the libraries</span></a>
 <a class="sourceLine" id="cb477-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb477-3" data-line-number="3">    <span class="kw">library</span>(lubridate) </a>
@@ -353,7 +353,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="layouts" class="section level2">
 <h2><span class="header-section-number">0.23</span> Layouts</h2>
-<p>Flexdashboard provides multimple layout patterns, however, since this is only a functional introduction to the topic, I will show you only the two layouts that I like the most, the column-based and the row-based. I will show you how to create both layouts using the same data. You do not have to create both. Just pick the one that you prefer (row or column based). To create a flexdashboard, you need to go to ‘File’ -&gt; ‘R Markdown..’ -&gt; ‘From Template’ -&gt; ‘Flex Dashboard’. Name it something and click ‘OK’.</p>
+<p>Flexdashboard provides multiple layout patterns, however, since this is only a functional introduction to the topic, I will show you only the two layouts that I like the most, the column-based and the row-based. I will show you how to create both layouts using the same data. You do not have to create both. Just pick the one that you prefer (row or column based). To create a flexdashboard, you need to go to ‘File’ -&gt; ‘R Markdown..’ -&gt; ‘From Template’ -&gt; ‘Flex Dashboard’. Name it something and click ‘OK’.</p>
 <center>
 <div class="figure">
 <img src="flex1.png" alt="New session." />
@@ -362,16 +362,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 <div id="column-based" class="section level3">
 <h3><span class="header-section-number">0.23.1</span> Column based</h3>
-<p>When we hit ‘OK’, Rstudio give as a column based template, which is cool. Lets explore it. The flexdashboard has similar structure to the Rmarkdown. It has the same five components that the markdown has. The difference is the layout. Below, I highlighed the areas that are different. You can see two main differences:</p>
+<p>When we hit ‘OK’, Rstudio gives as a column based template, which is cool. Lets explore it. Flexdashboard has similar structure to Rmarkdown. It has the same five components that the markdown has. The difference is the layout. Below, I highlighted the areas that are different. You can see two main differences:</p>
 <ul>
 <li><ol style="list-style-type: decimal">
-<li>Special sintax for specifying columns (or rows if the dashboard is row-based), and</li>
+<li>Special syntax for specifying columns (or rows if the dashboard is row-based), and</li>
 </ol></li>
 <li><ol start="2" style="list-style-type: decimal">
-<li>the tripple hashes. The tripple hashes create boxes in the flexdashboard. As you might recall, in a simple markdown a tripple hash sign specifies the smallest title.</li>
+<li>the triple hashes. The triple hashes create boxes in flexdashboard. As you might recall, in a simple markdown a triple hash sign specifies the smallest title.</li>
 </ol></li>
 </ul>
-<p>Enough reading, you will understand better if you just knit this dashboard. Go agead and press ‘Knit’.</p>
+<p>Enough reading, you will understand better if you just knit this dashboard. Go ahead and press ‘Knit’.</p>
 <center>
 <div class="figure">
 <img src="flex2.png" alt="New session." />
@@ -384,43 +384,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">New session.</p>
 </div>
 </center>
-<p>There you go. We got an empty dashboard. The whole layout thing should become clear now. We got the main header (blue top bar) that displays the title and three boxes that we created in the layout. As far as I know, the width of a page in R, usually, adds up to 1200px or 12, depending on the context. It does not strictly apply to the flexdahsboard for some reason. In the template, we can see that the widths of two columns add up to a thousand. Even if you change the width of one of the columns to, lets say, 5000, it wont break it. Instead, it resizes proportionally. What does it mean? Means that you will have to experiment with sizes. It is not a real problem, though, so, lets move on. Lets actually insert our crash map into the main window.</p>
-<p>Before we are able to recreate the map from the last chapter, we need to load the libraries that we will be using. They are the libraries that we have been using so far. You can just copy and paste them from our previous projects, or you can type them if you want. Use the illustration below as reference. Make sure you have all of them installed and loaded.</p>
+<p>There you go. We got an empty dashboard. The whole layout thing should become clear now. We got the main header (blue top bar) that displays the title and three boxes that we created in the layout. As far as I know, the width of a page in R, usually, adds up to 1200px or 12, depending on the context. It does not strictly apply to flexdahsboard for some reason. In the template, we can see that the widths of two columns adds up to a thousand. Even if you change the width of one of the columns to, lets say, 5000, it wont break it. Instead, it resizes proportionally. What does it mean? Means that you will have to experiment with sizes. It is not a real problem, though, so, lets move on. Lets actually insert our crash map into the main window.</p>
+<p>Before we are able to recreate the map from the last chapter, we need to load the libraries that we will be using. They are the libraries that we have been using so far. You can just copy and paste them from our previous projects, or you can type them if you want. Use the illustration below as a reference. Make sure you have all of them installed and loaded.</p>
 <center>
 <div class="figure">
 <img src="flex5.png" alt="New session." />
 <p class="caption">New session.</p>
 </div>
 </center>
-<p>Now that we got the libraries down, lets prepare the data for the map. We have already done all these steps in the previous chapter, so you can just copy and paste them into the chunk. Use the illustration below as reference.</p>
+<p>Now that we got the libraries down, lets prepare the data for the map. We have already done all these steps in the previous chapter, so you can just copy and paste them into the chunk. Use the illustration below as a reference.</p>
 <center>
 <div class="figure">
 <img src="flex6.png" alt="New session." />
 <p class="caption">New session.</p>
 </div>
 </center>
-<p>The data are ready. Now, literally, just copy the map code from the previous chapter and paste in the first empty chunk provided in the template under the ‘### Chart A’. Use the illustration below as reference.</p>
+<p>The data are ready. Now, literally, just copy the map code from the previous chapter and paste in the first empty chunk provided in the template under the ‘### Chart A’. Use the illustration below as a reference.</p>
 <center>
 <div class="figure">
 <img src="flex7.png" alt="New session." />
 <p class="caption">New session.</p>
 </div>
 </center>
-<p>We have anough code in there to see some nice results already. Lets knit the documnet to see what it looks like at this stage. Press ‘Knit’.</p>
+<p>We have enough code in there to see some nice results already. Lets knit the document to see what it looks like at this stage. Press ‘Knit’.</p>
 <center>
 <div class="figure">
 <img src="flex4.png" alt="New session." />
 <p class="caption">New session.</p>
 </div>
 </center>
-<p>This is really good already. The structure is there. The map is fully interactive. We are half way there. Lets load the second dataset. It will serve as the base for the bar plot that we will fit into the second box of the dashboard. The second one is much easier, because we do not need to agregate and join anything. When we will read it in, the date column will turn into character. We will need to revert it back to date. Reference the illustration below.</p>
+<p>This is really good already. The structure is there. The map is fully interactive. We are half way there. Lets load the second data-set. It will serve as the base for the bar plot that we will fit into the second box of the dashboard. The second one is much easier, because we do not need to aggregate and join anything. When we will read it in, the date column will turn into character. We will need to revert it back to a date. Reference the illustration below.</p>
 <center>
 <div class="figure">
 <img src="flex8.png" alt="New session." />
 <p class="caption">New session.</p>
 </div>
 </center>
-<p>Once the data are in, we need to build our plot. The plot that we want to build here will be almost axactly the same as the bar plot that we built at the end of the our big assignment. Go and find that plot. It is called ‘ourBarPlot’. Copy it and paste into the second empty chunk provided in the template under the ‘### Chart B’. There are a couple of things to change here. First, add the ‘fill = “blue”’ parameter to the geom_bar() function. This will change the color of our bars to blue. You can pick a different color if you want. It will be dark grey if we will not include it. Second, change the title to ’’ (empty). We will later rename the ‘### Chart B’ to something else, and we do not want to have two titles there. Finally, wrap the ‘ourBarPlot’ in the ggplotly() function to turn the ggplot2 into plotly. Reference the illustration below.</p>
+<p>Once the data are in, we need to build our plot. The plot that we want to build here will be almost exactly the same as the bar plot that we built at the end of our big assignment. Go and find that plot. It is called ‘ourBarPlot’. Copy it and paste into the second empty chunk provided in the template under the ‘### Chart B’. There are a couple of things to change here. First, add the ‘fill = “blue”’ parameter to the geom_bar() function. This will change the color of our bars to blue. You can pick a different color if you want. It will be dark gray if we will not include it. Second, change the title to “”. We will later rename the ‘### Chart B’ to something else, and we do not want to have two titles there. Finally, wrap the ‘ourBarPlot’ in the ggplotly() function to turn the ggplot2 into plotly. Reference the illustration below.</p>
 <center>
 <div class="figure">
 <img src="flex9.png" alt="New session." />
@@ -434,7 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">New session.</p>
 </div>
 </center>
-<p>We got two interactive elements that we learned in the last two chapters. Lets fill the third box. Remember I mentioned some value box and that it was important. Lets see what it is. Value boxes are great for highlighting important numbers. You can assign different colors to them and even add icons. It will be better if I just show you. Lets import the third dataset first. No modifications this time. Reference the illustration below.</p>
+<p>We got two interactive elements that we learned in the last two chapters. Lets fill the third box. Remember, I mentioned some value box and that it was important. Let’s see what it is. Value boxes are great for highlighting important numbers. You can assign different colors to them and even add icons. It will be better if I just show you. Lets import the third data-set first. No modifications this time. Reference the illustration below.</p>
 <center>
 <div class="figure">
 <img src="flex3rd.png" alt="New session." />
@@ -443,7 +443,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 <p>Now, paste the following code in the empty chunk provided by the template under the ‘### Chart C’: valueBox(injuredAndKilled$injured, icon = ‘fa-angry’, color = ‘warning’). What does this mean?</p>
 <div class="infobox note">
-<p>Well, the valueBox() is the function for value boxes. It takes the number (which is contained in the column ‘injured’ of the table ‘injuredAndKilled’), icon (we are using the fontawesome icon library, here is the link for more information: <a href="https://fontawesome.com/icons?d=gallery" class="uri">https://fontawesome.com/icons?d=gallery</a>), and color. You might wonder, what does color = ‘warning’ mean? It is the bootstrap-library standard color. You will learn about bootsrap in the future. For now, just know that bootstrap is a styling library developed by tweeter for web developement. There are just a few standard colors in bootstrap. For instance, warning means orange.</p>
+<p>Well, the valueBox() is the function for value boxes. It takes the number (which is contained in the column ‘injured’ of the table ‘injuredAndKilled’), icon (we are using the fontawesome icon library, here is the link for more information: <a href="https://fontawesome.com/icons?d=gallery" class="uri">https://fontawesome.com/icons?d=gallery</a>), and color. You might wonder, what does color = ‘warning’ mean? It is a bootstrap-library standard color. You will learn about bootsrap in the future. For now, just know that bootstrap is a styling library developed by tweeter for web development. There are just a few standard colors in bootstrap. For instance, warning means orange.</p>
 </div>
 <center>
 <div class="figure">
@@ -451,7 +451,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">New session.</p>
 </div>
 </center>
-<p>Lets knit and see what we got.</p>
+<p>Let’s knit and see what we got.</p>
 <center>
 <div class="figure">
 <img src="flex12.png" alt="New session." />
@@ -460,7 +460,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </center>
 <p>Great. As you can see, we got an orange value box displaying the number of injuries in a big fat font with an angry face icon.</p>
 <div class="infobox note">
-<p>Value boxes are extremely important, because they can highligh the most important numbers in your report or dashboard.</p>
+<p>Value boxes are extremely important, because they can highlight the most important numbers in your report or dashboard.</p>
 </div>
 <p>Lets add the second value box displaying the number of killed. We will use red color and some different icon for it. If we just add another chunk with similar code, the value boxes will overlap for some reason. We need to add ‘### Chart D’ for the second value box to be properly displayed. It does not have to be ‘Chart D’ precisely, it be called anything. We will rename them all later. Use the illustration below as reference.</p>
 <center>
@@ -469,21 +469,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">New session.</p>
 </div>
 </center>
-<p>We are almost done here. Lets knit and see what everything looks like.</p>
+<p>We are almost done here. Let’s knit and see what everything looks like.</p>
 <center>
 <div class="figure">
 <img src="flex14.png" alt="New session." />
 <p class="caption">New session.</p>
 </div>
 </center>
-<p>Perfect. We are done here. One last thing to do is to change the names of the boxes from Chart A,B,C, and D to proper names. For example, instead of ‘### Chart A’ I wrote ‘### Number of Car Accidents by Zipcode in 2019’. You can rename them as you see fit. Use the illustration below as reference for the names.</p>
+<p>Perfect. We are done here. One last thing to do is to change the names of the boxes from Chart A,B,C, and D to proper names. For example, instead of ‘### Chart A’ I wrote ‘### Number of Car Accidents by Zipcode in 2019’. You can rename them as you see fit. Use the illustration below as a reference for the names.</p>
 <center>
 <div class="figure">
 <img src="flex15.png" alt="New session." />
 <p class="caption">New session.</p>
 </div>
 </center>
-<p>This is it for the row-based flexdashboard. It looks really good and is informative anough to share with others. You should have an html file with this dashboard in your project’s folder. That html can be opened by most browsers and is small enough to be shared via email.</p>
+<p>This is it for the row-based flexdashboard. It looks really good and is informative enough to share with others. You should have an HTML file with this dashboard in your project’s folder. That HTML can be opened by most browsers and is small enough to be shared via email.</p>
 </div>
 <div id="row-based" class="section level3">
 <h3><span class="header-section-number">0.23.2</span> Row based</h3>
@@ -494,7 +494,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">New session.</p>
 </div>
 </center>
-<p>In the body, change ‘Column’ to Row and instead of data-width = … write data-height = … . You can knit the document now, but you will see that the layout is not great at all. We will have to move our bar plot from the second row to the first one. Do it according to the illustration below. Once done, knit the document to see what it looks like.</p>
+<p>In the body, change ‘Column’ to ‘Row’ and instead of data-width = … write data-height = … . You can knit the document now, but you will see that the layout is not great at all. We will have to move our bar plot from the second row to the first one. Do it according to the illustration below. Once done, knit the document to see what it looks like.</p>
 <center>
 <div class="figure">
 <img src="flex17.png" alt="New session." />
@@ -520,7 +520,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="conclusion" class="section level2">
 <h2><span class="header-section-number">0.24</span> Conclusion</h2>
-<p>In this section we covered everything that you need to really get started with this cool tool. There are more than just two layouts that I showed you here. However, these two are the easiest to get started with. You should use them as baselayers for your experimentations. As I said a few times here, it is much much easier to take a working prototype and start layering thing on top. You can do interesting things with flexdashboard. You can add tabs to boxes and even add multiple pages. At the moment, it should be impressive for you, but you will quickly realize, just like I did, that flexdashboard can not do all the thing that you want. Therefore, there is no point in trying to truly master it. Instead, it makes sence to practive with it a little bit, add it to your toolbox, and move on to the topic of web applications.</p>
+<p>In this section we covered everything that you need to really get started with this cool tool. There are more than just two layouts that I showed you here. However, these two are the easiest to get started with. You should use them as base-layers for your experimentation. As I said a few times here, it is much much easier to take a working prototype and start layering thing on top. You can do interesting things with flexdashboard. You can add tabs to boxes and even add multiple pages. At the moment, it should be impressive to you, but you will quickly realize, just like I did, that flexdashboard can not do all the thing that you want. Therefore, there is no point in trying to truly master it. Instead, it makes sense to practice with it a little bit, add it to your toolbox, and move on to the topic of web applications.</p>
 <div class="infobox caution">
 <p>This is the end of this book. I will not be teaching you anything else here. Instead, as a bonus, I want to show you a little preview of what we will be doing in the next books.</p>
 </div>

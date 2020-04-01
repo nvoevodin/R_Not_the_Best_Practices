@@ -24,7 +24,7 @@
 <meta name="author" content="Nikita Voevodin" />
 
 
-<meta name="date" content="2020-03-31" />
+<meta name="date" content="2020-04-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -293,11 +293,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="infobox tip">
 <p>“Shiny is an R package that makes it easy to build interactive web apps straight from R. You can host standalone apps on a webpage or embed them in R Markdown documents or build dashboards. You can also extend your Shiny apps with CSS themes, htmlwidgets, and JavaScript actions.”</p>
 </div>
-<p>This is a bonus section, so I will not teach you anything here. I just want to talk about the Shiny package or framework if we can call it that. Shiny is a package, however, it is so big and spun so many additions that I want to call it a framework. If you do not know what a framework is, it is something between a package and a whole new language. Anyway, Shiny is big and it has its own special sintax. That is why I want to call it a framework.</p>
+<p>This is a bonus section, so I will not teach you anything here. I just want to talk about the Shiny package or framework, if we can call it that. Shiny is a package, however, it is so big and spun so many additions that I want to call it a framework. If you do not know what a framework is, it is something between a package and a whole new language. Anyway, Shiny is big and it has its own special sintax. That is why I want to call it a framework.</p>
 <div class="infobox note">
 <p>Around the time when I was messing around with maps and flexdashboards, I started to run into some limitations of static code. I could only display data once. If, for example, I wanted to change a timeline on a plot, I needed to re-aggregate my data and re-render the plot again. Basically, I needed a new script. I thought, ‘It would be cool if I just could add a slider or a switch to the flexdashboard that would do something like that.’ I was told that there is a solution, the package called ‘Shiny’. I thought, ‘What a stupid name.’ Still think that. Why not ‘Pink Unicorn’? I would name it ‘the Plague’ or ‘the Archangel’ or something cool like that.</p>
 </div>
-<p>Anyway, I started learning Shiny and it was amazing. Basically, in a matter of days, I turned from a data genetor to a web app developer. It was definitely hard and it took me many months, but even in the beginning, I knew that this is how I will learn the rest of R. Below is the generic Shiny App that uses data that RStudio provides for us. The app does not do much, but you can already see reactivity. Just copy the code and paste it into a new R script and it will render an app.</p>
+<p>Anyway, I started learning Shiny and it was amazing. Basically, in a matter of days, I turned from a data janitor to a web app developer. It was definitely hard and it took me many months, but even in the beginning, I knew that this is how I will learn the rest of R. Below is the generic Shiny App that uses data that RStudio provides for us. The app does not do much, but you can already see reactivity. Just copy the code and paste it into a new R script and it will render an app.</p>
 <div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb480-1" data-line-number="1"><span class="co"># Installing shiny</span></a>
 <a class="sourceLine" id="cb480-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&#39;shiny&#39;</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
@@ -347,14 +347,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">Shiny structure.</p>
 </div>
 </center>
-<p>This is what this generic app should look by the way:</p>
+<p>This is what this generic app should look like by the way:</p>
 </center>
 <div class="figure">
 <img src="shiny1.png" alt="Shiny structure." />
 <p class="caption">Shiny structure.</p>
 </div>
 </center>
-<p>Lets take one of the datasets that we saved a while ago and generate our own app by modifying that generic code.</p>
+<p>Let’s take one of the datasets that we saved a while ago and generate our own app by modifying that generic code.</p>
 <p>First, I will load the libraries that I will need:</p>
 <div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb482-1" data-line-number="1"><span class="kw">library</span>(shiny)</a>
 <a class="sourceLine" id="cb482-2" data-line-number="2"><span class="kw">library</span>(data.table)</a>
@@ -364,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb482-6" data-line-number="6"><span class="kw">library</span>(ggthemes)</a>
 <a class="sourceLine" id="cb482-7" data-line-number="7"><span class="kw">library</span>(scales)</a>
 <a class="sourceLine" id="cb482-8" data-line-number="8"><span class="kw">library</span>(plotly)</a></code></pre></div>
-<p>Then, I will load some data that we saved a while ago. I think, that dataset holds average ages of incoming vehicles by month.</p>
+<p>Then, I will load some data that we saved a while ago. I think, that data-set holds average ages of incoming vehicles by month.</p>
 <p>I will modify the generic app code to show the plotly plot while being able to filter it with a double slider. Will not explain how, though, as this is just a demonstration.</p>
 <div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb483-1" data-line-number="1">ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</a>
 <a class="sourceLine" id="cb483-2" data-line-number="2">  </a>
@@ -425,7 +425,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="infobox caution">
 <p>Great! We built an app. What now? It is a good start. Keep practicing and in six to eight months you will be able to build this: <a href="https://tlcanalytics.shinyapps.io/tlc_dash/">TLC Data Hub</a>. At least, that is how long it took me.</p>
 </div>
-<p>This was just a glimpse of what is comming in the next books. This app lives on your computer now. It will not open on anybody elses computer unless that computer has R installed along with everything that you used to created this app. To share a Shiny app, you need to host it. That and many other techniques and tricks will be covered in the next books.</p>
+<p>This was just a glimpse of what is coming in the next books. This app lives on your computer now. It will not open on anybody else’s computer unless that computer has R installed along with everything that you used to created this app. To share a Shiny app you need to host it. That and many other techniques and tricks will be covered in the next books.</p>
 <hr />
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">R, Not the Best Practices</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Nikita Voevodin</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>.</p>
 

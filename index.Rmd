@@ -76,7 +76,7 @@ If all that is not enough for you, feel free to close this book and get yourself
 
 ::: {.infobox .important data-latex="{important}"}
 
-Special thanks go to Fausto Lopez for proofreading this book. Fausto is a Director of Data Engineering & Analytics at NYC Taxi and Limousine Commission.
+Special thanks go to Fausto Lopez for proofreading chapters 1-6 of this book. Fausto is a Director of Data Engineering & Analytics at NYC Taxi and Limousine Commission.
 
 :::  
 
