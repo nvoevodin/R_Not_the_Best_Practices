@@ -1084,7 +1084,8 @@ install.packages('jsonlite')
 ```{r message = F, out.width='90%', fig.asp=.75, fig.align='center'}
 # Loading the libraries
     library(lubridate) 
-    library(data.table) 
+    library(data.table, quietly = TRUE, warn.conflicts = FALSE)
+    assignInNamespace("cedta.pkgEvalsUserCode", c(data.table:::cedta.pkgEvalsUserCode, "rtvs"), "data.table")
     library(dplyr) 
     library(openxlsx) 
     library(tidyr) 
@@ -1359,7 +1360,8 @@ Splitting the column into ten.
 
 ```{r message=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
 # Splitting.
-fuel <- fuel[, paste0("make", 1:10) := tstrsplit(make, " ")]
+
+fuel <- fuel[, paste0("make", 1:10):= tstrsplit(make, " ")]
 ```
 
 The code above follows the data.table package code pattern. That pattern reads as follows: data table[work with rows , work with columns]. Our code says: in the data table fuel, create ten columns named make1, make2 … make10, and populate these columns with the contents of the column ‘make’ that we are splitting (the splitting point is " "). It is better if you just take a look at the resulting data table. We end up with ten extra columns. Most of them are empty. We will be keeping only the first two. 
@@ -1410,7 +1412,9 @@ Now, we need to do the same thing to the 'model' column.
 
 ```{r message=FALSE, out.width='90%', fig.asp=.75, fig.align='center'}
 # Splitting.
-fuel <- setDT(fuel)[, paste0("model", 1:10) := tstrsplit(model, " ")]
+
+
+fuel <- fuel[, paste0("model", 1:10):= tstrsplit(model, " ")]
 ```
 
 In model, we just want one word.

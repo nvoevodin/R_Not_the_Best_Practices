@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>FlexDahsboard | R, Not the Best Practices</title>
-  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="description" content="There will be some boring, basic shit that I just have to cover, but the majority of it will be practical and interactive." />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
   <meta property="og:title" content="FlexDahsboard | R, Not the Best Practices" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta property="og:description" content="There will be some boring, basic shit that I just have to cover, but the majority of it will be practical and interactive." />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="FlexDahsboard | R, Not the Best Practices" />
   
-  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:description" content="There will be some boring, basic shit that I just have to cover, but the majority of it will be practical and interactive." />
   
 
 <meta name="author" content="Nikita Voevodin" />
 
 
-<meta name="date" content="2020-04-01" />
+<meta name="date" content="2020-04-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -298,58 +298,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Before we begin, I want to say that flexdashboard is definitely a useful tool that you should know about. For me personally, it was a stepping stone to the next and the biggest for me topic, ‘RShiny’. Flexdashboard is great to create a quick report in dashboard format, but it lacks features that I was looking for when I was learning. I used it twice during my first year of working with R. The first time for this: <a href="https://medium.com/@NYCTLC/visualizing-taxis-and-for-hire-vehicle-models-in-nyc-19278ad23466" class="uri">https://medium.com/@NYCTLC/visualizing-taxis-and-for-hire-vehicle-models-in-nyc-19278ad23466</a> and particularly for this dashboard: <a href="https://tlc_blog_posts.gitlab.io/word_cloud/car_cloud1.html" class="uri">https://tlc_blog_posts.gitlab.io/word_cloud/car_cloud1.html</a>. The second time was to generate a seriously complicated report for the TLC DATA HUB that I created for the Taxi and Limousine Commission of New York City here: <a href="https://tlcanalytics.shinyapps.io/tlc_dash/" class="uri">https://tlcanalytics.shinyapps.io/tlc_dash/</a> (the button ‘Download This Page’ will generate a flexdashboard report). Although, I am saying that it lacks functionality that I wanted, without knowing it, I would not be able to generate that kind of sophisticated report for the TLC DATA HUB.</p>
 </div>
 <p>Anyway, I want you to create a new project. You should know how by now. If not, go back. In the new project, open a new R file and install the flexdashboard package.</p>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb476-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&#39;flexdashboard&#39;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&#39;flexdashboard&#39;</span>) </a></code></pre></div>
 <p>Before we start working on the dashboard, we need to get the data ready again.</p>
 <div id="data" class="section level2">
 <h2><span class="header-section-number">0.22</span> Data</h2>
 <p>We need to load the libraries and connect to the database again. After that, we will prepare three data-sets that we will display using the dashboard. The first data-set will have crashes per zip-code in 2019, and we will use it for a map. The second data-set will have crashes per month in 2019 and we will create a ggplotly bar plot out of it. The third data-set will have the total number of injured and the total number of killed in those crashes. We will use these numbers for value boxes. Value boxes are important, you will see what they look like.</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" data-line-number="1"><span class="co"># Loading the libraries</span></a>
-<a class="sourceLine" id="cb477-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb477-3" data-line-number="3">    <span class="kw">library</span>(lubridate) </a>
-<a class="sourceLine" id="cb477-4" data-line-number="4">    <span class="kw">library</span>(data.table) </a>
-<a class="sourceLine" id="cb477-5" data-line-number="5">    <span class="kw">library</span>(dplyr) </a>
-<a class="sourceLine" id="cb477-6" data-line-number="6">    <span class="kw">library</span>(tidyr) </a>
-<a class="sourceLine" id="cb477-7" data-line-number="7">    <span class="kw">library</span>(tibble) </a>
-<a class="sourceLine" id="cb477-8" data-line-number="8">    <span class="kw">library</span>(RMySQL)</a></code></pre></div>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb478-1" data-line-number="1"><span class="co"># Connecting to the database</span></a>
-<a class="sourceLine" id="cb478-2" data-line-number="2">connection =<span class="st"> </span></a>
-<a class="sourceLine" id="cb478-3" data-line-number="3"><span class="st">  </span><span class="kw">dbConnect</span>(<span class="dt">drv =</span> <span class="kw">MySQL</span>(), </a>
-<a class="sourceLine" id="cb478-4" data-line-number="4">  <span class="dt">user =</span> <span class="st">&quot;xxx&quot;</span>, </a>
-<a class="sourceLine" id="cb478-5" data-line-number="5">  <span class="dt">password =</span> <span class="st">&#39;xxx&#39;</span>, </a>
-<a class="sourceLine" id="cb478-6" data-line-number="6">  <span class="dt">host =</span> <span class="st">&#39;mybookdatabase.cgac79lt7rx0.us-east-2.rds.amazonaws.com&#39;</span>, </a>
-<a class="sourceLine" id="cb478-7" data-line-number="7">  <span class="dt">port =</span> <span class="dv">3306</span>, </a>
-<a class="sourceLine" id="cb478-8" data-line-number="8">  <span class="dt">dbname =</span> <span class="st">&#39;nikita99&#39;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" data-line-number="1"><span class="co"># Pulling initial data</span></a>
-<a class="sourceLine" id="cb479-2" data-line-number="2">crashes2019 &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(connection, </a>
-<a class="sourceLine" id="cb479-3" data-line-number="3">  <span class="st">&quot;SELECT * </span></a>
-<a class="sourceLine" id="cb479-4" data-line-number="4"><span class="st">  FROM book_pdData </span></a>
-<a class="sourceLine" id="cb479-5" data-line-number="5"><span class="st">  WHERE date &gt;= &#39;2019-01-01&#39; and date &lt; &#39;2020-01-01&#39;</span></a>
-<a class="sourceLine" id="cb479-6" data-line-number="6"><span class="st">  &quot;</span>)</a>
-<a class="sourceLine" id="cb479-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb479-8" data-line-number="8"><span class="co"># The first dataset</span></a>
-<a class="sourceLine" id="cb479-9" data-line-number="9">byZip &lt;-<span class="st"> </span>crashes2019 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb479-10" data-line-number="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(zip) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb479-11" data-line-number="11"><span class="st">  </span><span class="kw">count</span>()</a>
-<a class="sourceLine" id="cb479-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb479-13" data-line-number="13"><span class="co"># The second dataset</span></a>
-<a class="sourceLine" id="cb479-14" data-line-number="14">byMonth &lt;-<span class="st"> </span>crashes2019</a>
-<a class="sourceLine" id="cb479-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb479-16" data-line-number="16">byMonth<span class="op">$</span>date &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw">ymd</span>(byMonth<span class="op">$</span>date)</a>
-<a class="sourceLine" id="cb479-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb479-18" data-line-number="18">byMonth<span class="op">$</span>date &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw">floor_date</span>(byMonth<span class="op">$</span>date, <span class="st">&#39;month&#39;</span>)</a>
-<a class="sourceLine" id="cb479-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb479-20" data-line-number="20">byMonth &lt;-<span class="st"> </span>byMonth <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb479-21" data-line-number="21"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(date) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb479-22" data-line-number="22"><span class="st">  </span><span class="kw">count</span>()</a>
-<a class="sourceLine" id="cb479-23" data-line-number="23"></a>
-<a class="sourceLine" id="cb479-24" data-line-number="24"><span class="co"># The third dataset</span></a>
-<a class="sourceLine" id="cb479-25" data-line-number="25">injuredAndKilled &lt;-<span class="st"> </span>crashes2019 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb479-26" data-line-number="26"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">injured =</span> <span class="kw">sum</span>(injured), <span class="dt">killed =</span> <span class="kw">sum</span>(killed))</a>
-<a class="sourceLine" id="cb479-27" data-line-number="27"></a>
-<a class="sourceLine" id="cb479-28" data-line-number="28"><span class="co"># Saving the datasets</span></a>
-<a class="sourceLine" id="cb479-29" data-line-number="29"><span class="kw">fwrite</span>(byZip, <span class="st">&#39;byZip.csv&#39;</span>)</a>
-<a class="sourceLine" id="cb479-30" data-line-number="30"><span class="kw">fwrite</span>(byMonth, <span class="st">&#39;byMonth.csv&#39;</span>)</a>
-<a class="sourceLine" id="cb479-31" data-line-number="31"><span class="kw">fwrite</span>(injuredAndKilled, <span class="st">&#39;injuredAndKilled.csv&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb478-1" data-line-number="1"><span class="co"># Loading the libraries</span></a>
+<a class="sourceLine" id="cb478-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb478-3" data-line-number="3">    <span class="kw">library</span>(lubridate) </a>
+<a class="sourceLine" id="cb478-4" data-line-number="4">    <span class="kw">library</span>(data.table) </a>
+<a class="sourceLine" id="cb478-5" data-line-number="5">    <span class="kw">library</span>(dplyr) </a>
+<a class="sourceLine" id="cb478-6" data-line-number="6">    <span class="kw">library</span>(tidyr) </a>
+<a class="sourceLine" id="cb478-7" data-line-number="7">    <span class="kw">library</span>(tibble) </a>
+<a class="sourceLine" id="cb478-8" data-line-number="8">    <span class="kw">library</span>(RMySQL)</a></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" data-line-number="1"><span class="co"># Connecting to the database</span></a>
+<a class="sourceLine" id="cb479-2" data-line-number="2">connection =<span class="st"> </span></a>
+<a class="sourceLine" id="cb479-3" data-line-number="3"><span class="st">  </span><span class="kw">dbConnect</span>(<span class="dt">drv =</span> <span class="kw">MySQL</span>(), </a>
+<a class="sourceLine" id="cb479-4" data-line-number="4">  <span class="dt">user =</span> <span class="st">&quot;xxx&quot;</span>, </a>
+<a class="sourceLine" id="cb479-5" data-line-number="5">  <span class="dt">password =</span> <span class="st">&#39;xxx&#39;</span>, </a>
+<a class="sourceLine" id="cb479-6" data-line-number="6">  <span class="dt">host =</span> <span class="st">&#39;mybookdatabase.cgac79lt7rx0.us-east-2.rds.amazonaws.com&#39;</span>, </a>
+<a class="sourceLine" id="cb479-7" data-line-number="7">  <span class="dt">port =</span> <span class="dv">3306</span>, </a>
+<a class="sourceLine" id="cb479-8" data-line-number="8">  <span class="dt">dbname =</span> <span class="st">&#39;nikita99&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb480-1" data-line-number="1"><span class="co"># Pulling initial data</span></a>
+<a class="sourceLine" id="cb480-2" data-line-number="2">crashes2019 &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(connection, </a>
+<a class="sourceLine" id="cb480-3" data-line-number="3">  <span class="st">&quot;SELECT * </span></a>
+<a class="sourceLine" id="cb480-4" data-line-number="4"><span class="st">  FROM book_pdData </span></a>
+<a class="sourceLine" id="cb480-5" data-line-number="5"><span class="st">  WHERE date &gt;= &#39;2019-01-01&#39; and date &lt; &#39;2020-01-01&#39;</span></a>
+<a class="sourceLine" id="cb480-6" data-line-number="6"><span class="st">  &quot;</span>)</a>
+<a class="sourceLine" id="cb480-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb480-8" data-line-number="8"><span class="co"># The first dataset</span></a>
+<a class="sourceLine" id="cb480-9" data-line-number="9">byZip &lt;-<span class="st"> </span>crashes2019 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb480-10" data-line-number="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(zip) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb480-11" data-line-number="11"><span class="st">  </span><span class="kw">count</span>()</a>
+<a class="sourceLine" id="cb480-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb480-13" data-line-number="13"><span class="co"># The second dataset</span></a>
+<a class="sourceLine" id="cb480-14" data-line-number="14">byMonth &lt;-<span class="st"> </span>crashes2019</a>
+<a class="sourceLine" id="cb480-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb480-16" data-line-number="16">byMonth<span class="op">$</span>date &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw">ymd</span>(byMonth<span class="op">$</span>date)</a>
+<a class="sourceLine" id="cb480-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb480-18" data-line-number="18">byMonth<span class="op">$</span>date &lt;-<span class="st"> </span>lubridate<span class="op">::</span><span class="kw">floor_date</span>(byMonth<span class="op">$</span>date, <span class="st">&#39;month&#39;</span>)</a>
+<a class="sourceLine" id="cb480-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb480-20" data-line-number="20">byMonth &lt;-<span class="st"> </span>byMonth <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb480-21" data-line-number="21"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(date) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb480-22" data-line-number="22"><span class="st">  </span><span class="kw">count</span>()</a>
+<a class="sourceLine" id="cb480-23" data-line-number="23"></a>
+<a class="sourceLine" id="cb480-24" data-line-number="24"><span class="co"># The third dataset</span></a>
+<a class="sourceLine" id="cb480-25" data-line-number="25">injuredAndKilled &lt;-<span class="st"> </span>crashes2019 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb480-26" data-line-number="26"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">injured =</span> <span class="kw">sum</span>(injured), <span class="dt">killed =</span> <span class="kw">sum</span>(killed))</a>
+<a class="sourceLine" id="cb480-27" data-line-number="27"></a>
+<a class="sourceLine" id="cb480-28" data-line-number="28"><span class="co"># Saving the datasets</span></a>
+<a class="sourceLine" id="cb480-29" data-line-number="29"><span class="kw">fwrite</span>(byZip, <span class="st">&#39;byZip.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb480-30" data-line-number="30"><span class="kw">fwrite</span>(byMonth, <span class="st">&#39;byMonth.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb480-31" data-line-number="31"><span class="kw">fwrite</span>(injuredAndKilled, <span class="st">&#39;injuredAndKilled.csv&#39;</span>)</a></code></pre></div>
 </div>
 <div id="layouts" class="section level2">
 <h2><span class="header-section-number">0.23</span> Layouts</h2>
@@ -574,7 +574,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"download": ["R_Not_the_Best_Practices.pdf", "R_Not_the_Best_Practices.epub"],
 "toc": {
 "collapse": "subsection"
 }

@@ -12,7 +12,7 @@ link-citations: yes
 colorlinks: yes
 graphics: yes
 github-repo: rstudio/bookdown-demo
-description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+description: "There will be some boring, basic shit that I just have to cover, but the majority of it will be practical and interactive."
 ---
 
 # Preface {-}
@@ -73,6 +73,12 @@ You may be thinking, oh shit, this guy will only show me some real basic stuff! 
 I will lead you through the same experience with many tips and tricks along the way. You will learn how to interact with databases in R, pull data, aggregate and reshape it to your liking; merge it with other data; save it; work with different data and time formats; create useful static and dynamic plots; fit all that nice stuff into presentable reports; create shitty and great maps; use all that again to create dashboards; and finally build a simple web app as a bonus. Along the way, I will be telling you about mine and other programmers’ experiences and touch on some peripheral programming topics.
 
 If all that is not enough for you, feel free to close this book and get yourself something like R for Dummies or some shit. This book is, ultimately, what and how I wanted to be taught when I was a noob.
+
+::: {.infobox .warning data-latex="{warning}"}
+
+This book is free on Github and Bookdown.org. It is a complete version and nothing is taken out. However, you will need to have a database access in order to interact with this book and to complete challenges. The database costs me money to run and maintain. Therefore, I charge a pretty small fee of $9.99 for this. Not a huge price for a book + database access, if you ask me. I want to stress one thing though: do not share your credentials with anybody, because if I catch multiple connections from the same set of credentials multiple times I will have to disconnect it permanently. At this moment, I accept payments through PayPal. Go to PayPal.com -> Send -> and send 9.99 US Dollars to nvoevodin@yandex.ru -> add your email address as a note, I will use it to generate your credentials. If you do not have PayPal, we can figure something out. Email me at voevodin.nv@gmail.com with a subject 'Book_Creds'.
+
+::: 
 
 ::: {.infobox .important data-latex="{important}"}
 
